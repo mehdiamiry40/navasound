@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
@@ -52,11 +51,16 @@ export default function Home() {
             <span>No payment yet</span><span>No master uploads yet</span><span>Private beta</span>
           </div>
         </div>
-        <div className="hero-media">
-          <Image src="/navasound-studio-hero.png" alt="Independent musician listening to a finished track in a modern studio" fill priority sizes="(max-width: 900px) 100vw, 52vw" />
-          <div className="hero-media-label"><small>NAVASOUND / FOUNDING BETA</small><strong>Music infrastructure,<br />made visible.</strong></div>
-          <div className="hero-media-disc" aria-hidden="true"><span>N</span></div>
-        </div>
+        <aside className="hero-index" aria-label="NavaSound service index">
+          <div className="hero-index-number" aria-hidden="true">01</div>
+          <div className="hero-index-grid">
+            <div><small>SERVICE</small><strong>Digital music distribution</strong></div>
+            <div><small>MODEL</small><strong>Pay per release</strong></div>
+            <div><small>BASE</small><strong>Queensland, Australia</strong></div>
+            <div><small>STATUS</small><strong>Founding beta</strong></div>
+          </div>
+          <p>Independent release infrastructure / 2026</p>
+        </aside>
       </section>
 
       <section className="metrics-band" aria-label="NavaSound launch principles">

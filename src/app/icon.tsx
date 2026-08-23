@@ -7,20 +7,15 @@ export default function Icon() {
   return new ImageResponse(
     <div
       style={{
-        alignItems: "flex-end",
-        background: "#ffe600",
-        borderRadius: "50%",
+        alignItems: "center",
+        background: "#f04432",
         display: "flex",
-        gap: 4,
         height: "100%",
         justifyContent: "center",
-        paddingBottom: 15,
         width: "100%",
       }}
     >
-      <span style={{ background: "#10265f", borderRadius: 3, height: 14, width: 5 }} />
-      <span style={{ background: "#10265f", borderRadius: 3, height: 30, width: 5 }} />
-      <span style={{ background: "#10265f", borderRadius: 3, height: 22, width: 5 }} />
+      <span style={{ color: "#ffffff", fontSize: 36, fontWeight: 900, letterSpacing: -4 }}>N</span>
     </div>,
     size,
   );
