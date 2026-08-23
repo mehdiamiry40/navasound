@@ -7,20 +7,20 @@ export default function Icon() {
   return new ImageResponse(
     <div
       style={{
-        alignItems: "center",
-        background: "#151319",
+        alignItems: "flex-end",
+        background: "#ffe600",
         borderRadius: "50%",
-        color: "#d8ff3e",
         display: "flex",
-        fontSize: 34,
-        fontWeight: 800,
+        gap: 4,
         height: "100%",
         justifyContent: "center",
-        letterSpacing: "-0.08em",
+        paddingBottom: 15,
         width: "100%",
       }}
     >
-      N
+      <span style={{ background: "#10265f", borderRadius: 3, height: 14, width: 5 }} />
+      <span style={{ background: "#10265f", borderRadius: 3, height: 30, width: 5 }} />
+      <span style={{ background: "#10265f", borderRadius: 3, height: 22, width: 5 }} />
     </div>,
     size,
   );

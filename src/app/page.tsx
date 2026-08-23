@@ -1,188 +1,154 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
+const standards = [
+  { number: "01", title: "Metadata that lands cleanly.", copy: "A structured release brief catches missing credits, inconsistent artist names and avoidable store issues before delivery.", className: "standard-yellow", visual: "META" },
+  { number: "02", title: "Rights stay with the artist.", copy: "Your masters remain yours. NavaSound’s planned standard service takes no ownership and no standard DSP royalty commission.", className: "standard-blue", visual: "100%" },
+  { number: "03", title: "A route you can actually see.", copy: "Clear status, practical checks and plain-English policies replace mystery dashboards and vague promises.", className: "standard-cream", visual: "LIVE" },
+];
+
+const steps = [
+  ["Apply", "Tell us about the artist, release and target date."],
+  ["Prepare", "Build a clean metadata brief before sending files."],
+  ["Review", "We check rights, credits, artwork and store readiness."],
+  ["Deliver", "Approved releases follow the final provider route."],
+  ["Report", "Track status and royalties once the service is live."],
+];
+
 export default function Home() {
   return (
     <main>
+      <div className="announcement">
+        <p>Founding-artist beta · Applications now open</p>
+        <Link href="/apply">Apply for early access <Arrow /></Link>
+      </div>
+
       <header className="site-header">
         <a className="brand" href="#top" aria-label="NavaSound home">
           <span className="brand-mark" aria-hidden="true"><i /><i /><i /></span>
           <span>NavaSound</span>
         </a>
         <nav aria-label="Main navigation">
+          <a href="#standards">Why NavaSound</a>
           <a href="#pricing">Pricing</a>
           <a href="#how-it-works">How it works</a>
-          <Link href="/release">Release prep</Link>
-          <Link className="nav-cta" href="/apply">
-            Join the beta <Arrow />
-          </Link>
+          <Link href="/legal">Legal &amp; trust</Link>
+          <Link className="nav-cta" href="/apply">Join the beta <Arrow /></Link>
         </nav>
       </header>
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow"><span /> Independent by design · Australia</p>
-          <h1>Your music.<br />Everywhere it<br /><em>should be.</em></h1>
-          <p className="hero-lede">
-            Straightforward music distribution for independent artists. No annual
-            plan. No royalty commission. Just one clear fee per release.
-          </p>
+          <p className="eyebrow"><span /> Independent music distribution · Australia</p>
+          <h1>Your release.<br /><em>Clearly handled.</em></h1>
+          <p className="hero-lede">A more transparent route from finished master to streaming platforms—with clear release fees, artist-owned rights and human review.</p>
           <div className="hero-actions">
-            <Link className="button button-primary" href="/apply">
-              Apply for early access <Arrow />
-            </Link>
-            <a className="text-link" href="#pricing">See launch pricing <span aria-hidden="true">↓</span></a>
+            <Link className="button button-primary" href="/apply">Apply for early access <Arrow /></Link>
+            <Link className="text-link" href="/release">Prepare a release <Arrow /></Link>
           </div>
-          <p className="microcopy">Founding-artist beta · Limited places · Launching soon</p>
+          <div className="hero-assurance" aria-label="Current beta boundaries">
+            <span>No payment yet</span><span>No master uploads yet</span><span>Private beta</span>
+          </div>
         </div>
-
-        <div className="hero-art" aria-label="Abstract record and soundwave artwork">
-          <div className="orbit orbit-one" />
-          <div className="orbit orbit-two" />
-          <div className="record">
-            <div className="record-label"><span>NAVA</span><small>001</small></div>
-          </div>
-          <div className="sound-bars" aria-hidden="true">
-            {[42, 76, 55, 90, 64, 34, 70, 48, 83, 58, 30].map((height, index) => (
-              <i key={index} style={{ height }} />
-            ))}
-          </div>
-          <div className="now-playing">
-            <span className="play-dot">▶</span>
-            <span><small>NOW BUILDING</small><strong>The future of independent</strong></span>
-          </div>
+        <div className="hero-media">
+          <Image src="/navasound-studio-hero.png" alt="Independent musician listening to a finished track in a modern studio" fill priority sizes="(max-width: 900px) 100vw, 52vw" />
+          <div className="hero-media-label"><small>NAVASOUND / FOUNDING BETA</small><strong>Music infrastructure,<br />made visible.</strong></div>
+          <div className="hero-media-disc" aria-hidden="true"><span>N</span></div>
         </div>
       </section>
 
-      <section className="price-strip" id="pricing" aria-label="Launch pricing">
-        <div><small>SINGLE</small><strong><sup>A$</sup>10</strong><span>one track</span></div>
-        <div className="price-divider" />
-        <div><small>EP / ALBUM</small><strong><sup>A$</sup>20</strong><span>multi-track</span></div>
-        <p><b>0%</b> royalty commission<br /><span>You keep what your music earns.</span></p>
+      <section className="metrics-band" aria-label="NavaSound launch principles">
+        <div><strong>0%</strong><span>planned standard DSP royalty commission</span></div>
+        <div><strong>A$10</strong><span>planned single release fee</span></div>
+        <div><strong>A$20</strong><span>planned EP or album fee</span></div>
+        <div><strong>100%</strong><span>artist ownership of masters</span></div>
       </section>
 
-      <section className="manifesto section-shell">
-        <p className="section-kicker">01 · WHY NAVASOUND</p>
-        <div>
-          <h2>Distribution should feel<br />less like a <em>deal</em>.</h2>
-          <p className="large-copy">
-            NavaSound is being built for independent artists who want clear costs,
-            ownership of their work and human help when it matters.
-          </p>
+      <section className="standards section-shell" id="standards">
+        <div className="section-heading-row">
+          <div><p className="section-kicker">THE NAVASOUND STANDARD</p><h2>Distribution should<br />feel <em>understandable.</em></h2></div>
+          <p>Most release problems are not creative problems. They are missing data, unclear rights, hidden fees and silence between submission and release day. NavaSound is being designed around removing those gaps.</p>
         </div>
-        <aside className="manifesto-note">
-          <span>OUR PROMISE</span>
-          <p>No confusing tiers. No annual renewal just to keep releasing. No share of your standard streaming royalties.</p>
-        </aside>
-      </section>
-
-      <section className="feature-grid section-shell" aria-label="NavaSound benefits">
-        <article className="feature-card feature-purple">
-          <span className="feature-number">01</span>
-          <div className="feature-icon" aria-hidden="true">◎</div>
-          <h3>Release once.<br />Reach worldwide.</h3>
-          <p>Prepare one release for delivery to leading music and social platforms through NavaSound&apos;s launch distribution network.</p>
-        </article>
-        <article className="feature-card feature-lime">
-          <span className="feature-number">02</span>
-          <div className="feature-icon" aria-hidden="true">↗</div>
-          <h3>Keep your rights.<br />Keep your royalties.</h3>
-          <p>You keep ownership of your masters and 100% of standard DSP royalties. NavaSound charges the release fee upfront.</p>
-        </article>
-        <article className="feature-card feature-paper">
-          <span className="feature-number">03</span>
-          <div className="feature-icon equalizer-icon" aria-hidden="true"><i /><i /><i /><i /></div>
-          <h3>See what&apos;s<br />really happening.</h3>
-          <p>Clear reporting and release status, with practical support from people who understand independent music.</p>
-        </article>
-      </section>
-
-      <section className="process section-shell" id="how-it-works">
-        <div className="process-heading">
-          <p className="section-kicker">02 · HOW IT WORKS</p>
-          <h2>From finished track<br />to <em>release day.</em></h2>
+        <div className="standards-grid">
+          {standards.map((item) => (
+            <article className={`standard-card ${item.className}`} key={item.number}>
+              <span className="standard-number">{item.number}</span><div className="standard-visual" aria-hidden="true">{item.visual}</div><h3>{item.title}</h3><p>{item.copy}</p>
+            </article>
+          ))}
         </div>
-        <ol className="steps">
-          <li><span>1</span><div><h3>Send your release</h3><p>Upload final audio, artwork and metadata through the NavaSound release workflow.</p></div></li>
-          <li><span>2</span><div><h3>We check the details</h3><p>Every submission is checked for common metadata, artwork and rights issues before delivery.</p></div></li>
-          <li><span>3</span><div><h3>Choose your date</h3><p>Set a release date with enough lead time for store delivery, review and pitching preparation.</p></div></li>
-          <li><span>4</span><div><h3>Track your results</h3><p>Follow release status and royalties through clear reporting once the launch service is live.</p></div></li>
-        </ol>
+      </section>
+
+      <section className="visible-route">
+        <div className="visible-route-copy">
+          <p className="section-kicker">A VISIBLE RELEASE ROUTE</p>
+          <h2>Know what happens<br />before you press <em>send.</em></h2>
+          <p>Prepare metadata locally, review the beta terms and understand the launch boundary before sharing unreleased audio or paying a fee.</p>
+          <div className="visible-route-links"><Link href="/release">Open the release workspace <Arrow /></Link><Link href="/legal">Read the legal and trust centre <Arrow /></Link></div>
+        </div>
+        <div className="release-stack" aria-label="NavaSound release preparation stack">
+          <div className="release-sheet sheet-one"><small>STEP 01</small><strong>Artist application</strong><span>Fit · timing · contact</span></div>
+          <div className="release-sheet sheet-two"><small>STEP 02</small><strong>Release brief</strong><span>Metadata · credits · rights</span></div>
+          <div className="release-sheet sheet-three"><small>STEP 03</small><strong>Human review</strong><span>QC · readiness · route</span></div>
+          <div className="stack-disc" aria-hidden="true"><i /><i /><i /></div>
+        </div>
+      </section>
+
+      <section className="pricing-detail section-shell" id="pricing">
+        <div className="pricing-heading">
+          <p className="section-kicker">PLANNED LAUNCH PRICING</p><h2>Pay for the release.<br /><em>Not the calendar.</em></h2>
+          <p>Straightforward Australian-dollar launch pricing. Final inclusions and provider-dependent costs will be confirmed before payment opens.</p>
+          <Link className="text-link" href="/legal/refunds">Refund and cancellation position <Arrow /></Link>
+        </div>
+        <div className="pricing-cards">
+          <article><div className="price-card-top"><span>SINGLE</span><small>ONE TRACK</small></div><div className="price-orbit" aria-hidden="true"><span>1</span></div><strong><sup>A$</sup>10</strong><ul><li>Planned standard store delivery</li><li>Metadata readiness check</li><li>Royalty reporting</li><li>Standard support</li></ul><Link href="/apply">Apply with a single <Arrow /></Link></article>
+          <article className="pricing-featured"><div className="price-card-top"><span>EP / ALBUM</span><small>MULTI-TRACK</small></div><div className="price-orbit" aria-hidden="true"><span>+</span></div><strong><sup>A$</sup>20</strong><ul><li>Planned standard store delivery</li><li>Multi-track metadata check</li><li>Royalty reporting</li><li>Standard support</li></ul><Link href="/apply">Apply with a project <Arrow /></Link></article>
+        </div>
+      </section>
+
+      <section className="process" id="how-it-works">
+        <div className="process-intro"><p className="section-kicker">HOW IT WORKS</p><h2>Five clear moves.<br />One <em>release day.</em></h2><p>The final delivery step activates only after NavaSound signs a provider and completes testing.</p></div>
+        <ol className="steps">{steps.map(([title, copy], index) => <li key={title}><span>0{index + 1}</span><div><h3>{title}</h3><p>{copy}</p></div></li>)}</ol>
       </section>
 
       <section className="platforms" aria-label="Planned distribution destinations">
-        <p className="section-kicker">BUILT TO REACH LISTENERS ON</p>
-        <div className="platform-list" aria-label="Spotify, Apple Music, YouTube Music, TikTok, Amazon Music and more">
-          <span>Spotify</span><b>·</b><span>Apple Music</span><b>·</b><span>YouTube Music</span><b>·</b><span>TikTok</span><b>·</b><span>Amazon Music</span><b>·</b><span>and more</span>
-        </div>
-        <p className="platform-note">Final store availability will be confirmed before the public launch.</p>
+        <p className="section-kicker">PLANNED GLOBAL REACH</p>
+        <div className="platform-list" aria-label="Spotify, Apple Music, YouTube Music, TikTok and Amazon Music"><span>Spotify</span><b>↗</b><span>Apple Music</span><b>↗</b><span>YouTube Music</span><b>↗</b><span>TikTok</span><b>↗</b><span>Amazon Music</span></div>
+        <p className="platform-note">Final store availability depends on the selected distribution agreement.</p>
       </section>
 
-      <section className="pricing-detail section-shell">
-        <div className="pricing-heading">
-          <p className="section-kicker">03 · LAUNCH PRICING</p>
-          <h2>Pay for the release.<br /><em>Not the calendar.</em></h2>
-          <p>Simple Australian-dollar pricing for standard releases. No annual distribution subscription.</p>
-        </div>
-        <div className="pricing-cards">
-          <article>
-            <div><span>SINGLE</span><small>ONE TRACK</small></div>
-            <strong><sup>A$</sup>10</strong>
-            <ul><li>Standard store delivery</li><li>Metadata check</li><li>Royalty reporting</li><li>Standard support</li></ul>
-            <Link href="/apply">Join the beta <Arrow /></Link>
-          </article>
-          <article className="pricing-featured">
-            <div><span>EP / ALBUM</span><small>MULTI-TRACK</small></div>
-            <strong><sup>A$</sup>20</strong>
-            <ul><li>Standard store delivery</li><li>Metadata check</li><li>Royalty reporting</li><li>Standard support</li></ul>
-            <Link href="/apply">Join the beta <Arrow /></Link>
-          </article>
-        </div>
-        <p className="pricing-fineprint">Prices are launch pricing in AUD. GST treatment and any optional add-on services will be clearly stated before payment.</p>
-      </section>
-
-      <section className="trust-section section-shell">
-        <div className="trust-heading">
-          <p className="section-kicker">04 · BUILT IN THE OPEN</p>
-          <h2>Ready before<br /><em>release day.</em></h2>
-          <p>
-            Prepare clean metadata, understand the beta boundary and see exactly how
-            information is handled before a file or dollar changes hands.
-          </p>
-        </div>
-        <div className="trust-links">
-          <Link href="/release"><span>01</span><div><h3>Release workspace</h3><p>Create a structured release brief locally on your device.</p></div><b>↗</b></Link>
-          <Link href="/legal/privacy"><span>02</span><div><h3>Privacy by design</h3><p>No public form database, no hidden upload and no payment tracking.</p></div><b>↗</b></Link>
-          <Link href="/legal/beta"><span>03</span><div><h3>Rights before reach</h3><p>Clear ownership, metadata and anti-fraud expectations from day one.</p></div><b>↗</b></Link>
+      <section className="proof section-shell">
+        <div className="proof-heading"><p className="section-kicker">BUILT FOR SKEPTICS</p><h2>Plain terms.<br />Visible <em>boundaries.</em></h2></div>
+        <div className="proof-grid">
+          <Link href="/legal/privacy"><span>Privacy</span><strong>No hidden public form database.</strong><p>Current application and release tools stay on your device until you choose to send an email.</p><b>Read policy ↗</b></Link>
+          <Link href="/legal/beta"><span>Rights</span><strong>Masters stay with the artist.</strong><p>Preparing a release brief does not transfer ownership or create a distribution agreement.</p><b>Read beta terms ↗</b></Link>
+          <Link href="/legal/refunds"><span>Payments</span><strong>No checkout before the route is ready.</strong><p>Final service scope, provider costs and refund terms will be shown before paid launch.</p><b>Read position ↗</b></Link>
         </div>
       </section>
 
       <section className="faq section-shell">
-        <p className="section-kicker">05 · GOOD TO KNOW</p>
         <div className="faq-grid">
-          <h2>Small print,<br /><em>plain English.</em></h2>
+          <div><p className="section-kicker">GOOD TO KNOW</p><h2>Questions,<br /><em>answered cleanly.</em></h2></div>
           <div>
-            <details open><summary>Is NavaSound accepting releases now?<span>+</span></summary><p>NavaSound is currently forming a small founding-artist beta. Store delivery will begin only after the distribution backend, terms and release process have passed testing.</p></details>
-            <details><summary>Do I keep ownership of my music?<span>+</span></summary><p>Yes. NavaSound&apos;s standard distribution service will not take ownership of your masters. You must control the rights needed to distribute every release you submit.</p></details>
-            <details><summary>Does NavaSound take a royalty cut?<span>+</span></summary><p>The planned standard launch offer is 0% commission on DSP royalties. Optional services, if introduced, will be priced separately and agreed before use.</p></details>
-            <details><summary>How early should I submit?<span>+</span></summary><p>A final lead-time policy will be published before launch. Plan for at least several weeks so there is time for review, delivery and any corrections.</p></details>
+            <details open><summary>Is NavaSound accepting releases now?<span>+</span></summary><p>NavaSound is forming a small founding-artist beta. Applications and release briefs are open; store delivery begins only after the backend contract and full release process pass testing.</p></details>
+            <details><summary>Do I keep ownership of my music?<span>+</span></summary><p>Yes. The planned standard service does not take ownership of your masters. You must control all rights required for distribution.</p></details>
+            <details><summary>Does NavaSound take a royalty cut?<span>+</span></summary><p>The planned standard offer is 0% commission on DSP royalties. Final provider deductions, payout costs and optional services will be disclosed before launch.</p></details>
+            <details><summary>Why are payments and uploads disabled?<span>+</span></summary><p>Because NavaSound will not collect masters or money before its provider route, security controls and final agreements are ready.</p></details>
           </div>
         </div>
       </section>
 
       <section className="final-cta">
-        <div className="cta-disc" aria-hidden="true"><span>N</span></div>
-        <p className="section-kicker">FOUNDING ARTISTS WANTED</p>
-        <h2>Bring the music.<br /><em>We&apos;ll build the route.</em></h2>
-        <p>Join NavaSound&apos;s private beta and help shape a clearer kind of distribution.</p>
-        <Link className="button button-light" href="/apply">Apply for early access <Arrow /></Link>
+        <div className="cta-disc" aria-hidden="true"><span>N</span></div><p className="section-kicker">FOUNDING ARTISTS WANTED</p><h2>Build the release.<br /><em>Keep the rights.</em></h2><p>Join NavaSound’s private beta and help shape a clearer kind of music distribution.</p>
+        <div className="final-actions"><Link className="button button-light" href="/apply">Apply for early access <Arrow /></Link><Link className="text-link" href="/release">Prepare a release brief <Arrow /></Link></div>
       </section>
 
       <footer>
-        <a className="brand footer-brand" href="#top"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>NavaSound</span></a>
-        <p>Independent music distribution.<br />Built in Australia.</p>
-        <div><a href="mailto:hello@navasound.com">hello@navasound.com</a><Link href="/apply">Apply</Link><Link href="/release">Release prep</Link><Link href="/legal">Legal &amp; trust</Link><a href="#pricing">Pricing</a></div>
+        <div className="footer-lead"><a className="brand footer-brand" href="#top"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>NavaSound</span></a><h3>Independent music distribution,<br />made understandable.</h3></div>
+        <div><strong>START</strong><Link href="/apply">Apply</Link><Link href="/release">Release workspace</Link><a href="#pricing">Pricing</a></div>
+        <div><strong>TRUST</strong><Link href="/legal">Legal centre</Link><Link href="/legal/privacy">Privacy</Link><Link href="/legal/beta">Beta terms</Link></div>
+        <div><strong>CONTACT</strong><a href="mailto:hello@navasound.com">hello@navasound.com</a><span>Queensland, Australia</span></div>
         <small>© 2026 NavaSound · Operated by Mehdi Emir ABN 62 351 619 456 · Launch information subject to final service terms.</small>
       </footer>
     </main>
