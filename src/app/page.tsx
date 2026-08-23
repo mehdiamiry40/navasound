@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
 export default function Home() {
@@ -11,9 +13,9 @@ export default function Home() {
         <nav aria-label="Main navigation">
           <a href="#pricing">Pricing</a>
           <a href="#how-it-works">How it works</a>
-          <a className="nav-cta" href="mailto:hello@navasound.com?subject=NavaSound%20founding%20artist">
+          <Link className="nav-cta" href="/apply">
             Join the beta <Arrow />
-          </a>
+          </Link>
         </nav>
       </header>
 
@@ -26,9 +28,9 @@ export default function Home() {
             plan. No royalty commission. Just one clear fee per release.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href="mailto:hello@navasound.com?subject=NavaSound%20founding%20artist">
+            <Link className="button button-primary" href="/apply">
               Apply for early access <Arrow />
-            </a>
+            </Link>
             <a className="text-link" href="#pricing">See launch pricing <span aria-hidden="true">↓</span></a>
           </div>
           <p className="microcopy">Founding-artist beta · Limited places · Launching soon</p>
@@ -127,13 +129,13 @@ export default function Home() {
             <div><span>SINGLE</span><small>ONE TRACK</small></div>
             <strong><sup>A$</sup>10</strong>
             <ul><li>Standard store delivery</li><li>Metadata check</li><li>Royalty reporting</li><li>Standard support</li></ul>
-            <a href="mailto:hello@navasound.com?subject=NavaSound%20single%20release">Join the beta <Arrow /></a>
+            <Link href="/apply">Join the beta <Arrow /></Link>
           </article>
           <article className="pricing-featured">
             <div><span>EP / ALBUM</span><small>MULTI-TRACK</small></div>
             <strong><sup>A$</sup>20</strong>
             <ul><li>Standard store delivery</li><li>Metadata check</li><li>Royalty reporting</li><li>Standard support</li></ul>
-            <a href="mailto:hello@navasound.com?subject=NavaSound%20album%20release">Join the beta <Arrow /></a>
+            <Link href="/apply">Join the beta <Arrow /></Link>
           </article>
         </div>
         <p className="pricing-fineprint">Prices are launch pricing in AUD. GST treatment and any optional add-on services will be clearly stated before payment.</p>
@@ -157,13 +159,13 @@ export default function Home() {
         <p className="section-kicker">FOUNDING ARTISTS WANTED</p>
         <h2>Bring the music.<br /><em>We&apos;ll build the route.</em></h2>
         <p>Join NavaSound&apos;s private beta and help shape a clearer kind of distribution.</p>
-        <a className="button button-light" href="mailto:hello@navasound.com?subject=NavaSound%20founding%20artist">Apply for early access <Arrow /></a>
+        <Link className="button button-light" href="/apply">Apply for early access <Arrow /></Link>
       </section>
 
       <footer>
         <a className="brand footer-brand" href="#top"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>NavaSound</span></a>
         <p>Independent music distribution.<br />Built in Australia.</p>
-        <div><a href="mailto:hello@navasound.com">hello@navasound.com</a><a href="#pricing">Pricing</a><a href="#how-it-works">How it works</a></div>
+        <div><a href="mailto:hello@navasound.com">hello@navasound.com</a><Link href="/apply">Apply</Link><a href="#pricing">Pricing</a><a href="#how-it-works">How it works</a></div>
         <small>© 2026 NavaSound. Launch information subject to final service terms.</small>
       </footer>
     </main>

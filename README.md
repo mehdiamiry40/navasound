@@ -20,4 +20,12 @@ npm run build
 
 ## Deployment
 
-The production project is linked to Vercel as `emirgroup/navasound`. The custom domain is attached in Vercel and requires the recommended DNS records to be applied at Porkbun before it becomes active.
+The production project is linked to Vercel as `emirgroup/navasound` and deploys
+automatically from the private GitHub repository's `main` branch. The live custom
+domains are `navasound.com` and `www.navasound.com`.
+
+## Founding-artist beta
+
+The `/apply` route prepares a structured application in the visitor's email app.
+NavaSound does not collect payment, store artist data, or accept release files on
+the website while the distribution backend and final service terms are pending.
