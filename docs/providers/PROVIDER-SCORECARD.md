@@ -2,6 +2,18 @@
 
 Use this scorecard when proposals arrive. Do not select on headline monthly price alone.
 
+## Outreach status — 23 August 2026
+
+| Provider | Status | Channel / reference |
+|---|---|---|
+| LabelGrid | Submitted | Sales ticket `SC-8703` |
+| SonoSuite | Submitted | Website general-enquiry confirmation |
+| Revelator | Sent | `sales@revelator.com` from `hello@navasound.com` |
+| FUGA | Sent | `support@fuga.com` from `hello@navasound.com` |
+| AudioSalad | Sent | `info@audiosalad.com` after its public form repeatedly rejected valid fields |
+| limbo/ | Not submitted | Requires verified professional social profile, catalog links and detailed metrics |
+| Vydia | Not submitted | Requires phone, roster, catalog, revenue and budget details |
+
 | Criterion | Weight | LabelGrid | SonoSuite | Revelator | AudioSalad | limbo/ | Vydia |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | Total fixed cost and minimum commitment | 15 | | | | | | |
