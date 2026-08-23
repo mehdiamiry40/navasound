@@ -29,3 +29,10 @@ domains are `navasound.com` and `www.navasound.com`.
 The `/apply` route prepares a structured application in the visitor's email app.
 NavaSound does not collect payment, store artist data, or accept release files on
 the website while the distribution backend and final service terms are pending.
+
+The `/release` route creates a structured release brief entirely in the visitor's
+browser and downloads it as a local text file. The `/legal` route publishes the
+current privacy, website, beta-submission and pre-launch refund documents.
+
+Internal launch controls and the provider-dependent distribution-agreement drafting
+framework are stored under `docs/legal/` and `docs/providers/`.

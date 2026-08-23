@@ -13,6 +13,7 @@ export default function Home() {
         <nav aria-label="Main navigation">
           <a href="#pricing">Pricing</a>
           <a href="#how-it-works">How it works</a>
+          <Link href="/release">Release prep</Link>
           <Link className="nav-cta" href="/apply">
             Join the beta <Arrow />
           </Link>
@@ -141,8 +142,24 @@ export default function Home() {
         <p className="pricing-fineprint">Prices are launch pricing in AUD. GST treatment and any optional add-on services will be clearly stated before payment.</p>
       </section>
 
+      <section className="trust-section section-shell">
+        <div className="trust-heading">
+          <p className="section-kicker">04 · BUILT IN THE OPEN</p>
+          <h2>Ready before<br /><em>release day.</em></h2>
+          <p>
+            Prepare clean metadata, understand the beta boundary and see exactly how
+            information is handled before a file or dollar changes hands.
+          </p>
+        </div>
+        <div className="trust-links">
+          <Link href="/release"><span>01</span><div><h3>Release workspace</h3><p>Create a structured release brief locally on your device.</p></div><b>↗</b></Link>
+          <Link href="/legal/privacy"><span>02</span><div><h3>Privacy by design</h3><p>No public form database, no hidden upload and no payment tracking.</p></div><b>↗</b></Link>
+          <Link href="/legal/beta"><span>03</span><div><h3>Rights before reach</h3><p>Clear ownership, metadata and anti-fraud expectations from day one.</p></div><b>↗</b></Link>
+        </div>
+      </section>
+
       <section className="faq section-shell">
-        <p className="section-kicker">04 · GOOD TO KNOW</p>
+        <p className="section-kicker">05 · GOOD TO KNOW</p>
         <div className="faq-grid">
           <h2>Small print,<br /><em>plain English.</em></h2>
           <div>
@@ -165,8 +182,8 @@ export default function Home() {
       <footer>
         <a className="brand footer-brand" href="#top"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>NavaSound</span></a>
         <p>Independent music distribution.<br />Built in Australia.</p>
-        <div><a href="mailto:hello@navasound.com">hello@navasound.com</a><Link href="/apply">Apply</Link><a href="#pricing">Pricing</a><a href="#how-it-works">How it works</a></div>
-        <small>© 2026 NavaSound. Launch information subject to final service terms.</small>
+        <div><a href="mailto:hello@navasound.com">hello@navasound.com</a><Link href="/apply">Apply</Link><Link href="/release">Release prep</Link><Link href="/legal">Legal &amp; trust</Link><a href="#pricing">Pricing</a></div>
+        <small>© 2026 NavaSound · Operated by Mehdi Emir ABN 62 351 619 456 · Launch information subject to final service terms.</small>
       </footer>
     </main>
   );

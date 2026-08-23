@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 
 export default function ApplicationForm() {
   const [prepared, setPrepared] = useState(false);
@@ -83,6 +84,14 @@ export default function ApplicationForm() {
       <label className="rights-check">
         <input name="rights" type="checkbox" required />
         <span>I control, or will obtain, all rights needed to distribute this release.</span>
+      </label>
+
+      <label className="rights-check legal-check">
+        <input name="legal" type="checkbox" required />
+        <span>
+          I have read the <Link href="/legal/privacy">Privacy Notice</Link> and{" "}
+          <Link href="/legal/beta">Beta Submission Terms</Link>.
+        </span>
       </label>
 
       <div className="form-submit-row">

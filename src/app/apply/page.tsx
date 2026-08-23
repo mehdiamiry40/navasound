@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import InnerHeader from "../_components/inner-header";
 import ApplicationForm from "./application-form";
 
 export const metadata: Metadata = {
@@ -11,13 +11,7 @@ export const metadata: Metadata = {
 export default function ApplyPage() {
   return (
     <main className="apply-page">
-      <header className="site-header apply-header">
-        <Link className="brand" href="/" aria-label="NavaSound home">
-          <span className="brand-mark" aria-hidden="true"><i /><i /><i /></span>
-          <span>NavaSound</span>
-        </Link>
-        <Link className="text-link" href="/">Back to the website</Link>
-      </header>
+      <InnerHeader />
 
       <section className="apply-shell">
         <div className="apply-intro">
@@ -44,7 +38,7 @@ export default function ApplyPage() {
       <footer className="apply-footer">
         <p>Questions before applying?</p>
         <a href="mailto:hello@navasound.com">hello@navasound.com</a>
-        <small>© 2026 NavaSound · Built in Australia</small>
+        <small>© 2026 NavaSound · Mehdi Emir ABN 62 351 619 456</small>
       </footer>
     </main>
   );
