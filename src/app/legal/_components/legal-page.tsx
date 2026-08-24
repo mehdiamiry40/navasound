@@ -16,7 +16,7 @@ export default function LegalPage({
       <InnerHeader />
       <section className="legal-shell">
         <aside className="legal-sidebar">
-          <p className="section-kicker">LEGAL &amp; TRUST</p>
+          <p className="section-kicker">LEGAL AND TRUST</p>
           <nav aria-label="Legal documents">
             <Link href="/legal">Overview</Link>
             <Link href="/legal/privacy">Privacy</Link>
