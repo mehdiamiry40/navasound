@@ -5,25 +5,26 @@ import LegalPage from "./_components/legal-page";
 export const metadata: Metadata = {
   title: "Legal and trust centre | NavaSound",
   description: "NavaSound privacy, website, beta submission and refund information.",
+  alternates: { canonical: "/legal" },
 };
 
 const documents = [
-  ["Privacy Notice", "/legal/privacy", "How enquiries and release information are handled."],
-  ["Website Terms", "/legal/terms", "The rules for using NavaSound's public website."],
-  ["Beta Submission Terms", "/legal/beta", "What an early-access application does—and does not—mean."],
-  ["Refunds & Cancellations", "/legal/refunds", "Current payment status and the launch standard."],
+  ["Privacy notice", "/legal/privacy", "How enquiries and release information are handled."],
+  ["Website terms", "/legal/terms", "The rules for using NavaSound's public website."],
+  ["Beta submission terms", "/legal/beta", "What a founding artist application means."],
+  ["Refunds and cancellations", "/legal/refunds", "Payment status and planned launch terms."],
 ];
 
 export default function LegalOverviewPage() {
   return (
-    <LegalPage title="Plain-English policies." eyebrow="Legal centre">
+    <LegalPage title="Policies for the beta." eyebrow="Legal centre">
       <section>
-        <h2>Clear before commercial.</h2>
+        <h2>Before NavaSound takes files or payment.</h2>
         <p>
-          NavaSound is preparing a private founding-artist beta. These documents
-          cover the website and pre-launch application process. A separate final
-          distribution agreement will be provided before NavaSound requests audio,
-          artwork or payment.
+          NavaSound is preparing a small founding artist beta. These documents apply
+          to the website and application process. They are not the distribution
+          agreement. Accepted artists will receive that agreement before NavaSound
+          asks for audio, artwork or payment.
         </p>
       </section>
       <div className="legal-card-grid">
@@ -36,7 +37,7 @@ export default function LegalOverviewPage() {
         ))}
       </div>
       <aside className="legal-callout">
-        <strong>Current launch boundary</strong>
+        <strong>What the site does not do</strong>
         <p>
           The website does not take payments, upload audio or artwork, create DSP
           deliveries, or store form responses on NavaSound servers.

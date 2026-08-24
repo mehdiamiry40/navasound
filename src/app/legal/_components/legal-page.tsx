@@ -16,7 +16,7 @@ export default function LegalPage({
       <InnerHeader />
       <section className="legal-shell">
         <aside className="legal-sidebar">
-          <p className="section-kicker">LEGAL &amp; TRUST</p>
+          <p className="section-kicker">LEGAL AND TRUST</p>
           <nav aria-label="Legal documents">
             <Link href="/legal">Overview</Link>
             <Link href="/legal/privacy">Privacy</Link>
@@ -30,7 +30,7 @@ export default function LegalPage({
         <article className="legal-document">
           <p className="eyebrow"><span /> {eyebrow}</p>
           <h1>{title}</h1>
-          <p className="legal-updated">Effective 23 August 2026 · Version 1.0</p>
+          <p className="legal-updated">Effective 23 August 2026 / Version 1.0</p>
           <div className="legal-copy">{children}</div>
         </article>
       </section>

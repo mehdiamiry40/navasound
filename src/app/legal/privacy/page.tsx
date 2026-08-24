@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import LegalPage from "../_components/legal-page";
 
 export const metadata: Metadata = {
-  title: "Privacy Notice | NavaSound",
+  title: "Privacy notice | NavaSound",
   description: "How NavaSound handles personal and release information.",
+  alternates: { canonical: "/legal/privacy" },
 };
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Notice" eyebrow="Your information">
+    <LegalPage title="Privacy notice" eyebrow="Your information">
       <section>
         <h2>1. Who operates NavaSound</h2>
         <p>
@@ -31,7 +32,7 @@ export default function PrivacyPage() {
         </p>
       </section>
       <section>
-        <h2>3. Why information is used</h2>
+        <h2>3. How NavaSound uses information</h2>
         <ul>
           <li>To respond to enquiries and assess beta applications.</li>
           <li>To check release readiness, ownership and metadata.</li>
@@ -43,9 +44,10 @@ export default function PrivacyPage() {
       <section>
         <h2>4. Sharing and overseas processing</h2>
         <p>
-          Information is not sold. It may be shared with professional advisers,
-          technology providers, a selected distribution backend, digital music
-          services, payment providers or authorities where reasonably necessary.
+          NavaSound does not sell personal information. We may share it with
+          professional advisers, technology providers, a selected distribution
+          provider, digital music services, payment providers or authorities when
+          needed to provide the service or comply with the law.
           Email, hosting and future distribution providers may process data outside
           Australia. The specific provider disclosures will be updated before the
           paid service launches.
@@ -54,10 +56,10 @@ export default function PrivacyPage() {
       <section>
         <h2>5. Retention and security</h2>
         <p>
-          Unsuccessful or inactive beta enquiries are normally retained for no more
-          than 12 months. Records connected with a continuing relationship, dispute,
-          payment or legal obligation may be kept longer. Reasonable access controls
-          and account security are used, but no internet service can promise absolute
+          NavaSound normally keeps unsuccessful or inactive beta enquiries for no
+          more than 12 months. We may keep records longer when they relate to an
+          ongoing relationship, dispute, payment or legal duty. We use account
+          security and access controls, but no internet service can promise absolute
           security.
         </p>
       </section>

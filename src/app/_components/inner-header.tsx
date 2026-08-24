@@ -4,8 +4,8 @@ export default function InnerHeader({ backLabel = "Back to the website" }: { bac
   return (
     <header className="site-header apply-header">
       <Link className="brand" href="/" aria-label="NavaSound home">
-        <span className="brand-mark" aria-hidden="true"><i /><i /><i /></span>
         <span>NavaSound</span>
+        <small>NS / 001</small>
       </Link>
       <Link className="text-link" href="/">{backLabel}</Link>
     </header>

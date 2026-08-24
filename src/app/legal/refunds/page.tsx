@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import LegalPage from "../_components/legal-page";
 
 export const metadata: Metadata = {
-  title: "Refunds and Cancellations | NavaSound",
+  title: "Refunds and cancellations | NavaSound",
   description: "NavaSound's current payment, refund and cancellation position.",
+  alternates: { canonical: "/legal/refunds" },
 };
 
 export default function RefundsPage() {
   return (
-    <LegalPage title="Refunds & Cancellations" eyebrow="Payment clarity">
+    <LegalPage title="Refunds and cancellations" eyebrow="Payments">
       <section>
         <h2>1. No payments are currently accepted</h2>
         <p>
@@ -20,10 +21,10 @@ export default function RefundsPage() {
       <section>
         <h2>2. Before paid launch</h2>
         <p>
-          Before any payment, NavaSound will show the total price, included service,
-          expected lead time, cancellation window, takedown costs, provider-dependent
-          charges and the point at which work starts. The customer will be asked to
-          accept the final distribution agreement.
+          Before taking payment, NavaSound will show the total price, included
+          service, expected lead time and any extra costs. We will also state the
+          cancellation window and when work starts. NavaSound will ask you to accept
+          the final distribution agreement.
         </p>
       </section>
       <section>

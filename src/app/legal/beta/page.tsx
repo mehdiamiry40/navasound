@@ -2,17 +2,18 @@ import type { Metadata } from "next";
 import LegalPage from "../_components/legal-page";
 
 export const metadata: Metadata = {
-  title: "Beta Submission Terms | NavaSound",
-  description: "Terms for NavaSound founding-artist applications and release briefs.",
+  title: "Beta submission terms | NavaSound",
+  description: "Terms for NavaSound founding artist applications and release briefs.",
+  alternates: { canonical: "/legal/beta" },
 };
 
 export default function BetaTermsPage() {
   return (
-    <LegalPage title="Beta Submission Terms" eyebrow="Founding artists">
+    <LegalPage title="Beta submission terms" eyebrow="Founding artists">
       <section>
         <h2>1. Expression of interest</h2>
         <p>
-          A founding-artist application or release brief is an expression of interest
+          A founding artist application or release brief is an expression of interest
           only. NavaSound may accept, decline or request more information. No release
           is approved until NavaSound confirms acceptance in writing and both parties
           agree to the final distribution agreement.
@@ -57,9 +58,8 @@ export default function BetaTermsPage() {
       <section>
         <h2>6. Provider and store review</h2>
         <p>
-          A beta acceptance does not guarantee that a distribution provider or music
-          service will accept, publish, retain or monetize a release. Store policies,
-          fraud reviews and delivery requirements remain applicable.
+          A beta acceptance does not guarantee store delivery. Distribution providers
+          and music services may reject or remove a release under their own policies.
         </p>
       </section>
       <section>

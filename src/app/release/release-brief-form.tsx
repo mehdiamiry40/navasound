@@ -50,7 +50,7 @@ export default function ReleaseBriefForm() {
     const form = new FormData(event.currentTarget);
     const releaseTitle = String(form.get("releaseTitle") || "Untitled release").trim();
     const lines = [
-      "NAVASOUND — BETA RELEASE BRIEF",
+      "NAVASOUND BETA RELEASE BRIEF",
       `Generated: ${new Date().toISOString()}`,
       "",
       "RELEASE",
@@ -149,20 +149,20 @@ export default function ReleaseBriefForm() {
       </section>
 
       <section className="release-form-section">
-        <div className="release-section-heading"><span>03</span><h2>Readiness &amp; rights</h2></div>
+        <div className="release-section-heading"><span>03</span><h2>Readiness and rights</h2></div>
         <label className="notes-field"><span>Release notes</span><textarea name="notes" rows={5} placeholder="Collaborators, samples, covers, territories, prior releases or anything requiring review." /></label>
         <div className="release-declarations">
           <label className="rights-check"><input type="checkbox" required /><span>The metadata is accurate to the best of my knowledge.</span></label>
           <label className="rights-check"><input type="checkbox" required /><span>I control, or will clear, all recording, composition, artwork, name and likeness rights.</span></label>
           <label className="rights-check"><input type="checkbox" required /><span>I will not use bots, guaranteed-stream services or paid playlist placement.</span></label>
-          <label className="rights-check"><input type="checkbox" required /><span>I have read the <Link href="/legal/beta">Beta Submission Terms</Link> and <Link href="/legal/privacy">Privacy Notice</Link>.</span></label>
+          <label className="rights-check"><input type="checkbox" required /><span>I have read the <Link href="/legal/beta">beta submission terms</Link> and <Link href="/legal/privacy">privacy notice</Link>.</span></label>
         </div>
       </section>
 
       <div className="release-submit">
         <button className="button button-primary" type="submit">Download release brief <span aria-hidden="true">↓</span></button>
         <div>
-          <p aria-live="polite">{downloaded ? "Brief downloaded. Review it, then email it to NavaSound." : "Nothing is uploaded. The brief is created locally on this device."}</p>
+          <p aria-live="polite">{downloaded ? "Brief downloaded. Check it, then email it to NavaSound." : "Nothing is uploaded. Your browser creates the brief on this device."}</p>
           <a href="mailto:hello@navasound.com?subject=NavaSound%20beta%20release%20brief">Email hello@navasound.com ↗</a>
         </div>
       </div>

@@ -7,20 +7,8 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://navasound.com"),
-  title: "NavaSound — Your release, clearly handled",
-  description: "Transparent music distribution for independent artists. Clear release fees, artist-owned masters and a more visible route to release day.",
-  openGraph: {
-    title: "NavaSound — Your release, clearly handled",
-    description: "Clear pay-per-release music distribution for independent artists.",
-    url: "https://navasound.com",
-    siteName: "NavaSound",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "NavaSound — Your release, clearly handled",
-    description: "Clear pay-per-release music distribution for independent artists.",
-  },
+  title: "NavaSound | Music distribution for independent artists",
+  description: "NavaSound is building an Australian music distribution service for independent artists. The founding beta starts with release details only.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

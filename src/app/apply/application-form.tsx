@@ -11,11 +11,11 @@ export default function ApplicationForm() {
 
     const form = new FormData(event.currentTarget);
     const artistName = String(form.get("artistName") || "").trim();
-    const subject = `Founding artist application — ${artistName}`;
+    const subject = `Founding artist application: ${artistName}`;
     const body = [
       "Hello NavaSound,",
       "",
-      "I would like to apply for the founding-artist beta.",
+      "I would like to apply for the founding artist beta.",
       "",
       `Contact name: ${form.get("contactName")}`,
       `Artist or label name: ${artistName}`,
@@ -37,8 +37,8 @@ export default function ApplicationForm() {
   return (
     <form className="application-form" onSubmit={prepareEmail}>
       <div className="form-heading">
-        <span>FOUNDING ARTIST APPLICATION</span>
-        <p>No payment or file upload is required at this stage.</p>
+        <span>Founding artist application</span>
+        <p>This form does not accept payments or file uploads.</p>
       </div>
 
       <div className="field-grid">
@@ -89,8 +89,8 @@ export default function ApplicationForm() {
       <label className="rights-check legal-check">
         <input name="legal" type="checkbox" required />
         <span>
-          I have read the <Link href="/legal/privacy">Privacy Notice</Link> and{" "}
-          <Link href="/legal/beta">Beta Submission Terms</Link>.
+          I have read the <Link href="/legal/privacy">privacy notice</Link> and{" "}
+          <Link href="/legal/beta">beta submission terms</Link>.
         </span>
       </label>
 
@@ -100,7 +100,7 @@ export default function ApplicationForm() {
         </button>
         <p aria-live="polite">
           {prepared
-            ? "Your email app should now be open. Review the application and press send."
+            ? "Your email app should be open. Check the application, then send it."
             : "Your answers stay on this device until you send the prepared email."}
         </p>
       </div>
