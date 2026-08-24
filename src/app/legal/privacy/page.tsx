@@ -4,6 +4,7 @@ import LegalPage from "../_components/legal-page";
 export const metadata: Metadata = {
   title: "Privacy notice | NavaSound",
   description: "How NavaSound handles personal and release information.",
+  alternates: { canonical: "/legal/privacy" },
 };
 
 export default function PrivacyPage() {
