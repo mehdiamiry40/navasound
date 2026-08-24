@@ -4,6 +4,7 @@ import LegalPage from "../_components/legal-page";
 export const metadata: Metadata = {
   title: "Refunds and cancellations | NavaSound",
   description: "NavaSound's current payment, refund and cancellation position.",
+  alternates: { canonical: "/legal/refunds" },
 };
 
 export default function RefundsPage() {
