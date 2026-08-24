@@ -2,20 +2,19 @@ import type { Metadata } from "next";
 import LegalPage from "../_components/legal-page";
 
 export const metadata: Metadata = {
-  title: "Website Terms | NavaSound",
+  title: "Website terms | NavaSound",
   description: "Terms for using the NavaSound website and pre-launch tools.",
 };
 
 export default function WebsiteTermsPage() {
   return (
-    <LegalPage title="Website Terms" eyebrow="Using this site">
+    <LegalPage title="Website terms" eyebrow="Using this site">
       <section>
         <h2>1. About these terms</h2>
         <p>
           These terms apply to navasound.com and its pre-launch tools. NavaSound is
           operated by Mehdi Emir, ABN 62 351 619 456, in Queensland, Australia.
-          By using the site, you agree to use it lawfully and consistently with these
-          terms.
+          By using the site, you agree to use it lawfully and under these terms.
         </p>
       </section>
       <section>
@@ -49,10 +48,9 @@ export default function WebsiteTermsPage() {
       <section>
         <h2>5. Third-party services</h2>
         <p>
-          Links to email clients, streaming services and other websites are provided
-          for convenience. Those services have their own terms, availability and
-          privacy practices. NavaSound is not responsible for an external service it
-          does not control.
+          The site links to email clients, streaming services and other websites.
+          Those services have their own terms, availability and privacy practices.
+          NavaSound is not responsible for a service it does not control.
         </p>
       </section>
       <section>
@@ -67,8 +65,8 @@ export default function WebsiteTermsPage() {
       <section>
         <h2>7. Governing law</h2>
         <p>
-          These website terms are governed by Queensland law. Contact
-          hello@navasound.com first so concerns can be addressed directly.
+          Queensland law governs these website terms. Contact hello@navasound.com
+          first so we can address the concern directly.
         </p>
       </section>
     </LegalPage>
