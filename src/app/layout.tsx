@@ -7,22 +7,22 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://navasound.com"),
-  title: "NavaSound — Release your music. Keep what’s yours.",
-  description: "Clear music distribution for independent artists, with simple release fees, artist-owned masters and human review.",
+  title: "NavaSound | Music distribution for independent artists",
+  description: "NavaSound is building an Australian music distribution service for independent artists. The founding beta starts with release details only.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "NavaSound — Release your music. Keep what’s yours.",
-    description: "Clear pay-per-release music distribution for independent artists.",
+    title: "NavaSound | Music distribution for independent artists",
+    description: "Apply to NavaSound's founding artist beta with your release details. Keep your masters on your device for now.",
     url: "https://navasound.com",
     siteName: "NavaSound",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NavaSound — Release your music. Keep what’s yours.",
-    description: "Clear pay-per-release music distribution for independent artists.",
+    title: "NavaSound | Music distribution for independent artists",
+    description: "Apply to NavaSound's founding artist beta with your release details. Keep your masters on your device for now.",
   },
 };
 
