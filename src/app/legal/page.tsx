@@ -5,6 +5,7 @@ import LegalPage from "./_components/legal-page";
 export const metadata: Metadata = {
   title: "Legal and trust centre | NavaSound",
   description: "NavaSound privacy, website, beta submission and refund information.",
+  alternates: { canonical: "/legal" },
 };
 
 const documents = [
