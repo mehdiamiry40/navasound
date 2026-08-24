@@ -3,9 +3,9 @@ import InnerHeader from "../_components/inner-header";
 import ApplicationForm from "./application-form";
 
 export const metadata: Metadata = {
-  title: "Apply for the founding-artist beta | NavaSound",
+  title: "Apply to the founding artist beta | NavaSound",
   description:
-    "Apply for NavaSound's private founding-artist music distribution beta in Australia.",
+    "Apply to NavaSound's founding artist music distribution beta in Australia.",
 };
 
 export default function ApplyPage() {
@@ -15,20 +15,20 @@ export default function ApplyPage() {
 
       <section className="apply-shell">
         <div className="apply-intro">
-          <p className="eyebrow"><span /> Private founding-artist beta</p>
-          <h1>Start with the<br /><em>right release.</em></h1>
+          <p className="eyebrow"><span /> Founding artist beta</p>
+          <h1>Tell us about<br /><em>the release.</em></h1>
           <p>
-            Tell us what you are preparing. We will review the fit, confirm the
-            distribution route and provide final service terms before requesting
-            audio, artwork or payment.
+            Send the artist name, release type and target date. We review the
+            application before asking for audio, artwork or payment. Accepted artists
+            receive the distribution route and final terms in writing.
           </p>
           <div className="apply-pricing" aria-label="Planned launch pricing">
             <div><small>SINGLE</small><strong>A$10</strong></div>
             <div><small>EP / ALBUM</small><strong>A$20</strong></div>
           </div>
           <p className="apply-note">
-            Launch pricing remains subject to the final distribution agreement and
-            published service terms.
+            These prices are planned. We will confirm the final price and terms before
+            taking payment.
           </p>
         </div>
 
