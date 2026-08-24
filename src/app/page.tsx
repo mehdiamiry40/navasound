@@ -15,7 +15,7 @@ export default function Home() {
     <main>
       <div className="announcement">
         <div className="announcement-inner">
-          <p>Founding-artist beta is open</p>
+          <p>Founding artist beta is open</p>
           <Link href="/apply">Learn more <Arrow /></Link>
         </div>
       </div>
