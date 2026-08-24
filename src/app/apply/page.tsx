@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Apply to the founding artist beta | NavaSound",
   description:
     "Apply to NavaSound's founding artist music distribution beta in Australia.",
+  alternates: { canonical: "/apply" },
 };
 
 export default function ApplyPage() {
@@ -38,7 +39,7 @@ export default function ApplyPage() {
       <footer className="apply-footer">
         <p>Questions before applying?</p>
         <a href="mailto:hello@navasound.com">hello@navasound.com</a>
-        <small>© 2026 NavaSound · Mehdi Emir ABN 62 351 619 456</small>
+        <small>© 2026 NavaSound / Mehdi Emir / ABN 62 351 619 456</small>
       </footer>
     </main>
   );
