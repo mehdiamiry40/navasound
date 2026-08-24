@@ -4,6 +4,7 @@ import LegalPage from "../_components/legal-page";
 export const metadata: Metadata = {
   title: "Beta submission terms | NavaSound",
   description: "Terms for NavaSound founding artist applications and release briefs.",
+  alternates: { canonical: "/legal/beta" },
 };
 
 export default function BetaTermsPage() {
