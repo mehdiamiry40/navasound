@@ -5,7 +5,7 @@ import ReleaseBriefForm from "./release-brief-form";
 
 export const metadata: Metadata = {
   title: "Prepare a release | NavaSound",
-  description: "Create a structured, local-only release brief for the NavaSound founding-artist beta.",
+  description: "Create a release brief on your device for the NavaSound founding artist beta.",
 };
 
 export default function ReleasePage() {
@@ -14,13 +14,13 @@ export default function ReleasePage() {
       <InnerHeader />
       <section className="release-hero">
         <p className="eyebrow"><span /> Beta release workspace</p>
-        <h1>Metadata first.<br /><em>Masters later.</em></h1>
+        <h1>Build the brief.<br /><em>Keep your files.</em></h1>
         <div>
           <p>
-            Build a clean release brief before sending audio or artwork. Your answers
-            stay in this browser and download as a text file on your device.
+            Enter the release and track details. Your browser downloads them as a text
+            file and sends nothing to NavaSound.
           </p>
-          <Link className="text-link" href="/legal/beta">Read beta submission terms ↗</Link>
+          <Link className="text-link" href="/legal/beta">Read the beta terms ↗</Link>
         </div>
       </section>
       <div className="release-boundary">
@@ -28,9 +28,9 @@ export default function ReleasePage() {
       </div>
       <ReleaseBriefForm />
       <footer className="apply-footer release-footer">
-        <p>Need help preparing metadata?</p>
+        <p>Need help with the metadata?</p>
         <a href="mailto:hello@navasound.com">hello@navasound.com</a>
-        <Link href="/legal">Legal &amp; trust centre</Link>
+        <Link href="/legal">Legal and trust centre</Link>
       </footer>
     </main>
   );
