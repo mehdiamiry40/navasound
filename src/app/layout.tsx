@@ -7,10 +7,13 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://navasound.com"),
-  title: "NavaSound — Your release, clearly handled",
-  description: "Transparent music distribution for independent artists. Clear release fees, artist-owned masters and a more visible route to release day.",
+  title: "NavaSound — Release your music. Keep what’s yours.",
+  description: "Clear music distribution for independent artists, with simple release fees, artist-owned masters and human review.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "NavaSound — Your release, clearly handled",
+    title: "NavaSound — Release your music. Keep what’s yours.",
     description: "Clear pay-per-release music distribution for independent artists.",
     url: "https://navasound.com",
     siteName: "NavaSound",
@@ -18,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NavaSound — Your release, clearly handled",
+    title: "NavaSound — Release your music. Keep what’s yours.",
     description: "Clear pay-per-release music distribution for independent artists.",
   },
 };
