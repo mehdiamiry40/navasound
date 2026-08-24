@@ -8,14 +8,18 @@ export default function Icon() {
     <div
       style={{
         alignItems: "center",
-        background: "#f04432",
+        background: "#006bff",
+        borderRadius: 14,
         display: "flex",
+        gap: 4,
         height: "100%",
         justifyContent: "center",
         width: "100%",
       }}
     >
-      <span style={{ color: "#ffffff", fontSize: 36, fontWeight: 900, letterSpacing: -4 }}>N</span>
+      <span style={{ background: "#ffffff", borderRadius: 3, height: 16, width: 5 }} />
+      <span style={{ background: "#ffffff", borderRadius: 3, height: 32, width: 5 }} />
+      <span style={{ background: "#ffffff", borderRadius: 3, height: 23, width: 5 }} />
     </div>,
     size,
   );
