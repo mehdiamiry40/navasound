@@ -4,6 +4,7 @@ import LegalPage from "../_components/legal-page";
 export const metadata: Metadata = {
   title: "Website terms | NavaSound",
   description: "Terms for using the NavaSound website and pre-launch tools.",
+  alternates: { canonical: "/legal/terms" },
 };
 
 export default function WebsiteTermsPage() {
