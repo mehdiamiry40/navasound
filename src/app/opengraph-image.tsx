@@ -6,36 +6,96 @@ export const contentType = "image/png";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
-    <div style={{ background: "#fbfcfd", color: "#0b3558", display: "flex", flexDirection: "column", height: "100%", justifyContent: "space-between", padding: "48px 56px", width: "100%" }}>
-      <div style={{ alignItems: "center", display: "flex", fontSize: 26, fontWeight: 800, justifyContent: "space-between" }}>
-        <div style={{ alignItems: "center", display: "flex", gap: 14 }}>
-          <div style={{ alignItems: "center", background: "#006bff", borderRadius: 8, display: "flex", gap: 2, height: 34, justifyContent: "center", width: 34 }}>
-            <span style={{ background: "#ffffff", borderRadius: 2, height: 10, width: 3 }} />
-            <span style={{ background: "#ffffff", borderRadius: 2, height: 20, width: 3 }} />
-            <span style={{ background: "#ffffff", borderRadius: 2, height: 14, width: 3 }} />
-          </div>
-          <span>NavaSound</span>
-        </div>
-          <span style={{ background: "#edf5ff", borderRadius: 999, color: "#006bff", fontSize: 14, fontWeight: 650, padding: "10px 16px" }}>Founding artist beta</span>
+    <div
+      style={{
+        background: "#f3f1ea",
+        borderTop: "10px solid #2448d8",
+        color: "#111111",
+        display: "flex",
+        flexDirection: "column",
+        fontFamily: "Arial, sans-serif",
+        height: "100%",
+        justifyContent: "space-between",
+        padding: "42px 54px 40px",
+        width: "100%",
+      }}
+    >
+      <div
+        style={{
+          alignItems: "baseline",
+          borderBottom: "2px solid #c8c4b9",
+          display: "flex",
+          justifyContent: "space-between",
+          paddingBottom: 24,
+        }}
+      >
+        <span style={{ fontSize: 28, fontWeight: 700, letterSpacing: -1 }}>NavaSound</span>
+        <span style={{ color: "#2448d8", fontFamily: "monospace", fontSize: 17, letterSpacing: 2 }}>
+          NS / 001
+        </span>
       </div>
-      <div style={{ alignItems: "center", display: "flex", justifyContent: "space-between", width: "100%" }}>
-        <div style={{ display: "flex", flexDirection: "column", width: 790 }}>
-          <span style={{ color: "#006bff", fontSize: 16, fontWeight: 700, letterSpacing: 2.5, marginBottom: 20 }}>INDEPENDENT MUSIC DISTRIBUTION</span>
-          <div style={{ display: "flex", flexDirection: "column", fontSize: 84, fontWeight: 750, letterSpacing: -5.5, lineHeight: .94 }}>
+
+      <div style={{ alignItems: "stretch", display: "flex", flex: 1, paddingTop: 58 }}>
+        <div style={{ display: "flex", flex: 1, flexDirection: "column", justifyContent: "center" }}>
+          <span
+            style={{
+              color: "#5d5b55",
+              fontFamily: "monospace",
+              fontSize: 16,
+              letterSpacing: 2,
+              marginBottom: 27,
+              textTransform: "uppercase",
+            }}
+          >
+            Founding artist beta / Australia
+          </span>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              fontSize: 78,
+              fontWeight: 600,
+              letterSpacing: -4.5,
+              lineHeight: 0.96,
+            }}
+          >
             <span>Prepare your release.</span>
-            <span style={{ color: "#006bff" }}>Keep your masters.</span>
+            <span style={{ color: "#2448d8" }}>Keep your masters.</span>
           </div>
-          <span style={{ color: "#5f7180", fontSize: 21, marginTop: 28 }}>Planned launch pricing from A$10 per release</span>
         </div>
-        <div style={{ alignItems: "center", background: "#edf5ff", borderRadius: 42, display: "flex", height: 260, justifyContent: "center", width: 260 }}>
-          <div style={{ alignItems: "center", background: "#ffffff", border: "2px solid #dbe5ec", borderRadius: 28, display: "flex", flexDirection: "column", height: 190, justifyContent: "center", width: 190 }}>
-            <span style={{ color: "#006bff", fontSize: 58, fontWeight: 750, letterSpacing: -4 }}>100%</span>
-            <span style={{ color: "#5f7180", fontSize: 17, marginTop: 8 }}>artist owned</span>
-          </div>
+
+        <div
+          style={{
+            alignItems: "flex-end",
+            borderLeft: "2px solid #c8c4b9",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            marginLeft: 42,
+            paddingLeft: 34,
+            width: 235,
+          }}
+        >
+          <span style={{ color: "#2448d8", fontFamily: "monospace", fontSize: 23 }}>NS</span>
+          <span style={{ fontSize: 112, fontWeight: 500, letterSpacing: -9, lineHeight: 0.8 }}>001</span>
         </div>
       </div>
-      <div style={{ alignItems: "center", borderTop: "2px solid #dbe5ec", color: "#5f7180", display: "flex", fontSize: 16, justifyContent: "space-between", paddingTop: 20 }}>
-        <span>navasound.com</span><span>Founding artist beta · Australia</span>
+
+      <div
+        style={{
+          alignItems: "center",
+          borderTop: "2px solid #c8c4b9",
+          color: "#5d5b55",
+          display: "flex",
+          fontFamily: "monospace",
+          fontSize: 15,
+          justifyContent: "space-between",
+          letterSpacing: 1,
+          paddingTop: 20,
+        }}
+      >
+        <span>navasound.com</span>
+        <span>Independent music distribution</span>
       </div>
     </div>,
     { ...size },
