@@ -1,0 +1,623 @@
+.page {
+  --paper: #f3f1ea;
+  --ink: #111111;
+  --muted: #5d5b55;
+  --blue: #2448d8;
+  --line: #c8c4b9;
+  min-height: 100vh;
+  border-top: 6px solid var(--blue);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.header,
+.hero,
+.ruledSection,
+.applyBand,
+.footer {
+  width: min(100%, 1160px);
+  margin: 0 auto;
+  padding-right: 56px;
+  padding-left: 56px;
+}
+
+.header {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 18px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.brand > span {
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: -0.035em;
+}
+
+.brand small,
+.catalogueLine,
+.catalogueMark small,
+.sectionIntro > p,
+.applyBand > div > p,
+.processRow > span,
+.footer > p {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+  font-weight: 540;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.brand small {
+  color: var(--blue);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav a {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 520;
+  text-decoration: none;
+}
+
+.nav a:not(.navAction):hover,
+.secondaryAction:hover,
+.footer a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--blue);
+  text-underline-offset: 4px;
+}
+
+.nav .navAction {
+  min-height: 42px;
+  padding: 0 19px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--ink);
+}
+
+.nav .navAction:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.hero {
+  min-height: 650px;
+  padding-top: 94px;
+  padding-bottom: 82px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(210px, 0.45fr);
+  gap: 72px;
+  border-bottom: 1px solid var(--line);
+}
+
+.heroCopy {
+  min-width: 0;
+}
+
+.catalogueLine {
+  margin-bottom: 36px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  color: var(--muted);
+}
+
+.catalogueLine span:first-child {
+  color: var(--blue);
+}
+
+.catalogueLine span + span::before {
+  width: 30px;
+  margin-right: 24px;
+  display: inline-block;
+  border-top: 1px solid var(--line);
+  content: "";
+  vertical-align: middle;
+}
+
+.hero h1 {
+  max-width: 800px;
+  margin: 0;
+  font-size: clamp(58px, 7.1vw, 88px);
+  font-weight: 520;
+  letter-spacing: -0.045em;
+  line-height: 0.97;
+}
+
+.hero h1 span {
+  color: var(--blue);
+}
+
+.lede {
+  max-width: 650px;
+  margin: 36px 0 0;
+  color: #33322f;
+  font-size: 18px;
+  line-height: 1.58;
+}
+
+.heroActions {
+  margin-top: 38px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.primaryAction {
+  min-height: 50px;
+  padding: 0 21px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border: 1px solid var(--blue);
+  border-radius: 2px;
+  background: var(--blue);
+  color: white;
+  font-size: 15px;
+  font-weight: 590;
+  text-decoration: none;
+}
+
+.primaryAction:hover {
+  border-color: var(--ink);
+  background: var(--ink);
+}
+
+.secondaryAction {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 540;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 5px;
+}
+
+.availability {
+  margin: 21px 0 0;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.catalogueMark {
+  min-width: 0;
+  padding-left: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-left: 1px solid var(--line);
+}
+
+.catalogueMark > span {
+  margin-bottom: auto;
+  color: var(--blue);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.catalogueMark strong {
+  margin-left: -7px;
+  font-size: clamp(88px, 10vw, 128px);
+  font-weight: 470;
+  letter-spacing: -0.075em;
+  line-height: 0.78;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.catalogueMark small {
+  margin-top: 30px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.ruledSection {
+  padding-top: 96px;
+  padding-bottom: 96px;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.62fr) minmax(0, 1.38fr);
+  gap: 84px;
+  border-bottom: 1px solid var(--line);
+}
+
+.sectionIntro > p,
+.applyBand > div > p {
+  margin: 0 0 28px;
+  color: var(--blue);
+}
+
+.sectionIntro h2,
+.applyBand h2 {
+  max-width: 330px;
+  margin: 0;
+  font-size: clamp(34px, 4vw, 48px);
+  font-weight: 520;
+  letter-spacing: -0.04em;
+  line-height: 1.03;
+}
+
+.rows,
+.priceRows {
+  border-top: 1px solid var(--ink);
+}
+
+.processRow {
+  min-height: 112px;
+  padding: 23px 0;
+  display: grid;
+  grid-template-columns: 54px 150px 1fr;
+  align-items: start;
+  gap: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.processRow > span {
+  color: var(--blue);
+}
+
+.processRow h3 {
+  margin: -2px 0 0;
+  font-size: 19px;
+  font-weight: 570;
+  letter-spacing: -0.025em;
+}
+
+.processRow p {
+  max-width: 420px;
+  margin: -2px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.priceRow {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.priceRow span {
+  font-size: 16px;
+}
+
+.priceRow strong {
+  color: var(--blue);
+  font-size: 22px;
+  font-weight: 560;
+  letter-spacing: -0.025em;
+  text-align: right;
+}
+
+.priceNote {
+  max-width: 620px;
+  margin: 25px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.applyBand {
+  padding-top: 67px;
+  padding-bottom: 67px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  border-bottom: 1px solid var(--line);
+}
+
+.applyBand > div > p {
+  margin-bottom: 17px;
+}
+
+.applyBand h2 {
+  max-width: none;
+}
+
+.footer {
+  min-height: 184px;
+  padding-top: 44px;
+  padding-bottom: 44px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-content: space-between;
+  gap: 42px 70px;
+}
+
+.footer > div,
+.footer nav {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.footer a {
+  color: var(--ink);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.footer .footerBrand {
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.footer > p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+
+@media (max-width: 900px) {
+  .header,
+  .hero,
+  .ruledSection,
+  .applyBand,
+  .footer {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 74px;
+    padding-bottom: 0;
+    grid-template-columns: 1fr;
+    gap: 65px;
+  }
+
+  .catalogueMark {
+    min-height: 124px;
+    margin: 0 -32px;
+    padding: 26px 32px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: end;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .catalogueMark > span {
+    margin: 0;
+  }
+
+  .catalogueMark strong {
+    justify-self: center;
+    font-size: 78px;
+    line-height: 0.75;
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+
+  .catalogueMark small {
+    margin: 0;
+    text-align: right;
+  }
+
+  .ruledSection {
+    padding-top: 74px;
+    padding-bottom: 74px;
+    grid-template-columns: 1fr;
+    gap: 46px;
+  }
+
+  .sectionIntro h2 {
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .header,
+  .hero,
+  .ruledSection,
+  .applyBand,
+  .footer {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .header {
+    min-height: 68px;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  .brand small {
+    display: none;
+  }
+
+  .nav {
+    gap: 12px;
+  }
+
+  .nav > a:not(.navAction) {
+    display: none;
+  }
+
+  .nav .navAction {
+    min-height: 44px;
+    padding: 0 16px;
+  }
+
+  .hero {
+    padding-top: 52px;
+    gap: 52px;
+  }
+
+  .catalogueLine {
+    margin-bottom: 28px;
+    display: block;
+    line-height: 1.6;
+  }
+
+  .catalogueLine span {
+    display: block;
+  }
+
+  .catalogueLine span + span {
+    margin-top: 5px;
+  }
+
+  .catalogueLine span + span::before {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 14.5vw, 62px);
+    letter-spacing: -0.045em;
+  }
+
+  .lede {
+    margin-top: 28px;
+    font-size: 17px;
+  }
+
+  .heroActions {
+    margin-top: 31px;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .primaryAction {
+    min-height: 52px;
+    justify-content: space-between;
+  }
+
+  .secondaryAction {
+    min-height: 48px;
+  }
+
+  .availability {
+    max-width: 330px;
+    margin-top: 16px;
+  }
+
+  .catalogueMark {
+    min-height: 106px;
+    margin: 0 -20px;
+    padding: 22px 20px;
+    grid-template-columns: auto 1fr;
+  }
+
+  .catalogueMark strong {
+    justify-self: end;
+    font-size: 64px;
+  }
+
+  .catalogueMark small {
+    display: none;
+  }
+
+  .ruledSection {
+    padding-top: 62px;
+    padding-bottom: 62px;
+    gap: 36px;
+  }
+
+  .sectionIntro > p {
+    margin-bottom: 18px;
+  }
+
+  .sectionIntro h2,
+  .applyBand h2 {
+    font-size: 38px;
+  }
+
+  .processRow {
+    min-height: 0;
+    padding: 21px 0 23px;
+    grid-template-columns: 38px 1fr;
+    gap: 8px 12px;
+  }
+
+  .processRow h3 {
+    font-size: 18px;
+  }
+
+  .processRow p {
+    grid-column: 2;
+  }
+
+  .priceRow {
+    min-height: 72px;
+  }
+
+  .priceRow strong {
+    max-width: 145px;
+    font-size: 19px;
+  }
+
+  .applyBand {
+    padding-top: 54px;
+    padding-bottom: 54px;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer {
+    min-height: auto;
+    padding-top: 38px;
+    padding-bottom: 38px;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer > div,
+  .footer nav {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .footer nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 13px 22px;
+  }
+
+  .footer > p {
+    grid-column: auto;
+    line-height: 1.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .page *::before,
+  .page *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
