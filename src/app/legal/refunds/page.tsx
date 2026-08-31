@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "../../_lib/metadata";
 import LegalPage from "../_components/legal-page";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Refunds and Cancellations | NavaSound",
   description: "NavaSound's current payment, refund and cancellation position.",
-};
+  path: "/legal/refunds",
+});
 
 export default function RefundsPage() {
   return (

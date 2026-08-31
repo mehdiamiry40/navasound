@@ -5,7 +5,8 @@ The launch website for [NavaSound](https://navasound.com), an Australian music d
 ## Local development
 
 ```bash
-npm install
+nvm use
+npm ci
 npm run dev
 ```
 
@@ -14,9 +15,12 @@ Open `http://localhost:3000`.
 ## Quality checks
 
 ```bash
-npm run lint
-npm run build
+npx playwright install chromium
+npm run check
 ```
+
+The full quality gate runs linting, TypeScript, a production build and browser
+regression tests, including JavaScript-disabled privacy-boundary coverage.
 
 ## Deployment
 
