@@ -9,9 +9,9 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   ...createPageMetadata({
-    title: "NavaSound — Your release, clearly handled",
+    title: "NavaSound Release Readiness — Your release, clearly handled",
     description:
-      "Transparent music distribution for independent artists. Clear release fees, artist-owned masters and a more visible route to release day.",
+      "The available-now NavaSound Release Readiness beta offers applications, local metadata preparation and human review. Distribution comes after provider integration.",
     path: "/",
   }),
 };

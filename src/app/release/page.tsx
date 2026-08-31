@@ -4,8 +4,8 @@ import { createPageMetadata } from "../_lib/metadata";
 import ReleaseBriefForm from "./release-brief-form";
 
 export const metadata = createPageMetadata({
-  title: "Prepare a release | NavaSound",
-  description: "Create a structured, local-only release brief for the NavaSound founding-artist beta.",
+  title: "Release readiness workspace | NavaSound",
+  description: "A local-only metadata brief for the NavaSound founding beta.",
   path: "/release",
 });
 
@@ -14,12 +14,14 @@ export default function ReleasePage() {
     <main id="main-content" className="release-page">
       <InnerHeader />
       <section className="release-hero">
-        <p className="eyebrow"><span /> Beta release workspace</p>
+        <p className="eyebrow"><span /> Release Readiness workspace</p>
         <h1>Metadata first.<br /><em>Masters later.</em></h1>
         <div>
           <p>
-            Build a clean release brief before sending audio or artwork. Your answers
-            stay in this browser and download as a text file on your device.
+            Preparation is available now: build a clean release brief before any
+            provider delivery. Your answers stay in this browser and download as a
+            text file on your device. Download or copy the brief, then manually email
+            it to NavaSound for readiness review. Do not attach masters or artwork.
           </p>
           <Link className="text-link" href="/legal/beta">Read beta submission terms ↗</Link>
         </div>

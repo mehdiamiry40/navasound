@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "NavaSound — Your release, clearly handled";
+export const alt = "NavaSound Release Readiness — Your release, clearly handled";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -16,19 +16,19 @@ export default function OpenGraphImage() {
       </div>
       <div style={{ alignItems: "flex-end", display: "flex", justifyContent: "space-between", width: "100%" }}>
         <div style={{ display: "flex", flexDirection: "column", width: 830 }}>
-          <span style={{ color: "#f04432", fontSize: 17, fontWeight: 700, letterSpacing: 3, marginBottom: 20 }}>INDEPENDENT MUSIC DISTRIBUTION</span>
+          <span style={{ color: "#f04432", fontSize: 17, fontWeight: 700, letterSpacing: 3, marginBottom: 20 }}>RELEASE READINESS FOR INDEPENDENT ARTISTS</span>
           <div style={{ display: "flex", flexDirection: "column", fontSize: 88, fontWeight: 800, letterSpacing: -6, lineHeight: .88 }}>
             <span>Your release.</span>
             <span>Clearly handled.</span>
           </div>
-          <span style={{ fontSize: 22, marginTop: 28 }}>Clear fees / Artist-owned masters / Human review</span>
+          <span style={{ fontSize: 22, marginTop: 28 }}>Applications / Local metadata / Human review</span>
         </div>
         <div style={{ alignItems: "flex-start", background: "#f04432", color: "white", display: "flex", fontSize: 92, fontWeight: 800, height: 240, justifyContent: "flex-start", letterSpacing: -8, padding: "18px 24px", width: 240 }}>
           01
         </div>
       </div>
       <div style={{ alignItems: "center", borderTop: "2px solid #111111", display: "flex", fontSize: 17, justifyContent: "space-between", paddingTop: 20 }}>
-        <span>navasound.com</span><span>Founding-artist beta · Australia</span>
+        <span>navasound.com</span><span>Release Readiness beta · Australia</span>
       </div>
     </div>,
     { ...size },
