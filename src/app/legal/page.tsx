@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { createPageMetadata } from "../_lib/metadata";
 import LegalPage from "./_components/legal-page";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Legal and trust centre | NavaSound",
   description: "NavaSound privacy, website, beta submission and refund information.",
-};
+  path: "/legal",
+});
 
 const documents = [
   ["Privacy Notice", "/legal/privacy", "How enquiries and release information are handled."],

@@ -18,7 +18,7 @@ const steps = [
 
 export default function Home() {
   return (
-    <main>
+    <main id="main-content">
       <div className="announcement">
         <p>Founding-artist beta · Applications now open</p>
         <Link href="/apply">Apply for early access <Arrow /></Link>
@@ -29,13 +29,26 @@ export default function Home() {
           <span className="brand-mark" aria-hidden="true"><i /><i /><i /></span>
           <span>NavaSound</span>
         </a>
-        <nav aria-label="Main navigation">
+        <nav className="desktop-nav" aria-label="Main navigation">
           <a href="#standards">Why NavaSound</a>
           <a href="#pricing">Pricing</a>
           <a href="#how-it-works">How it works</a>
           <Link href="/legal">Legal &amp; trust</Link>
           <Link className="nav-cta" href="/apply">Join the beta <Arrow /></Link>
         </nav>
+        <details className="mobile-menu">
+          <summary aria-label="Site navigation menu">
+            <span>Menu</span>
+            <span className="mobile-menu-icon" aria-hidden="true">+</span>
+          </summary>
+          <nav aria-label="Mobile navigation">
+            <a href="#standards">Why NavaSound</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#how-it-works">How it works</a>
+            <Link href="/legal">Legal &amp; trust</Link>
+            <Link className="nav-cta" href="/apply">Apply <Arrow /></Link>
+          </nav>
+        </details>
       </header>
 
       <section className="hero" id="top">
@@ -135,10 +148,10 @@ export default function Home() {
         <div className="faq-grid">
           <div><p className="section-kicker">GOOD TO KNOW</p><h2>Questions,<br /><em>answered cleanly.</em></h2></div>
           <div>
-            <details open><summary>Is NavaSound accepting releases now?<span>+</span></summary><p>NavaSound is forming a small founding-artist beta. Applications and release briefs are open; store delivery begins only after the backend contract and full release process pass testing.</p></details>
-            <details><summary>Do I keep ownership of my music?<span>+</span></summary><p>Yes. The planned standard service does not take ownership of your masters. You must control all rights required for distribution.</p></details>
-            <details><summary>Does NavaSound take a royalty cut?<span>+</span></summary><p>The planned standard offer is 0% commission on DSP royalties. Final provider deductions, payout costs and optional services will be disclosed before launch.</p></details>
-            <details><summary>Why are payments and uploads disabled?<span>+</span></summary><p>Because NavaSound will not collect masters or money before its provider route, security controls and final agreements are ready.</p></details>
+            <details open><summary>Is NavaSound accepting releases now?<span aria-hidden="true">+</span></summary><p>NavaSound is forming a small founding-artist beta. Applications and release briefs are open; store delivery begins only after the backend contract and full release process pass testing.</p></details>
+            <details><summary>Do I keep ownership of my music?<span aria-hidden="true">+</span></summary><p>Yes. The planned standard service does not take ownership of your masters. You must control all rights required for distribution.</p></details>
+            <details><summary>Does NavaSound take a royalty cut?<span aria-hidden="true">+</span></summary><p>The planned standard offer is 0% commission on DSP royalties. Final provider deductions, payout costs and optional services will be disclosed before launch.</p></details>
+            <details><summary>Why are payments and uploads disabled?<span aria-hidden="true">+</span></summary><p>Because NavaSound will not collect masters or money before its provider route, security controls and final agreements are ready.</p></details>
           </div>
         </div>
       </section>

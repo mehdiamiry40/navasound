@@ -1,16 +1,17 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import InnerHeader from "../_components/inner-header";
+import { createPageMetadata } from "../_lib/metadata";
 import ReleaseBriefForm from "./release-brief-form";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Prepare a release | NavaSound",
   description: "Create a structured, local-only release brief for the NavaSound founding-artist beta.",
-};
+  path: "/release",
+});
 
 export default function ReleasePage() {
   return (
-    <main className="release-page">
+    <main id="main-content" className="release-page">
       <InnerHeader />
       <section className="release-hero">
         <p className="eyebrow"><span /> Beta release workspace</p>

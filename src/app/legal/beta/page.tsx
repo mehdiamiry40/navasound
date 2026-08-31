@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "../../_lib/metadata";
 import LegalPage from "../_components/legal-page";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Beta Submission Terms | NavaSound",
   description: "Terms for NavaSound founding-artist applications and release briefs.",
-};
+  path: "/legal/beta",
+});
 
 export default function BetaTermsPage() {
   return (

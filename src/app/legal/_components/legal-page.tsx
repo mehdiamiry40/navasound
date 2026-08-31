@@ -12,7 +12,7 @@ export default function LegalPage({
   children: ReactNode;
 }) {
   return (
-    <main className="legal-page">
+    <main id="main-content" className="legal-page">
       <InnerHeader />
       <section className="legal-shell">
         <aside className="legal-sidebar">

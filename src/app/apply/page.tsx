@@ -1,16 +1,17 @@
-import type { Metadata } from "next";
 import InnerHeader from "../_components/inner-header";
+import { createPageMetadata } from "../_lib/metadata";
 import ApplicationForm from "./application-form";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Apply for the founding-artist beta | NavaSound",
   description:
     "Apply for NavaSound's private founding-artist music distribution beta in Australia.",
-};
+  path: "/apply",
+});
 
 export default function ApplyPage() {
   return (
-    <main className="apply-page">
+    <main id="main-content" className="apply-page">
       <InnerHeader />
 
       <section className="apply-shell">
