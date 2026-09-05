@@ -8,6 +8,8 @@ const POLICY_RECORD = [
   "Beta Submission Terms — Version 1.0, effective 23 August 2026",
 ];
 
+const NON_BLANK_PATTERN = ".*\\S.*";
+
 function fieldValue(form: FormData, name: string) {
   return String(form.get(name) || "").trim();
 }
@@ -148,6 +150,7 @@ export default function ApplicationForm() {
       <div className="form-heading">
         <span>FOUNDING ARTIST APPLICATION</span>
         <p>No payment or file upload is required at this stage.</p>
+        <p className="local-save-note">Your answers are not saved automatically. Download a copy before closing this page.</p>
       </div>
 
       <noscript>
@@ -161,11 +164,11 @@ export default function ApplicationForm() {
       <div className="field-grid">
         <label>
           <span>Contact name</span>
-          <input name="contactName" autoComplete="name" maxLength={120} required />
+          <input name="contactName" autoComplete="name" maxLength={120} pattern={NON_BLANK_PATTERN} title="Enter at least one non-space character." required />
         </label>
         <label>
           <span>Artist or label name</span>
-          <input name="artistName" maxLength={160} required />
+          <input name="artistName" maxLength={160} pattern={NON_BLANK_PATTERN} title="Enter at least one non-space character." required />
         </label>
         <label>
           <span>Contact email</span>

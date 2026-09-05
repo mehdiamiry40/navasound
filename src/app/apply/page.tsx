@@ -17,14 +17,15 @@ export default function ApplyPage() {
 
       <section className="apply-shell">
         <div className="apply-intro">
-          <p className="eyebrow"><span /> Release Readiness founding beta</p>
-          <h1>Start with the<br /><em>right release.</em></h1>
+          <p className="eyebrow"><span /> Release Readiness beta</p>
+          <h1>Apply for the beta.</h1>
           <p>
-            Tell us what you are preparing. NavaSound reviews each application
-            for fit and release readiness. The provider route, final terms,
-            secure file delivery and payment come later if the release is suitable.
+            Tell us about your music and the release you are preparing. Complete
+            the form on your device, then manually email it to NavaSound for
+            readiness review. Do not attach masters or artwork.
           </p>
-          <div className="apply-pricing" aria-label="Target launch pricing">
+          <p className="apply-price-label">Future distribution · target pricing</p>
+          <div className="apply-pricing" aria-label="Target future distribution pricing">
             <div><small>TARGET SINGLE</small><strong>A$10</strong></div>
             <div><small>TARGET EP / ALBUM</small><strong>A$20</strong></div>
           </div>
@@ -40,7 +41,7 @@ export default function ApplyPage() {
 
       <section className="beta-clarity" aria-labelledby="beta-clarity-heading">
         <h2 id="beta-clarity-heading" className="beta-clarity-heading">
-          Know the beta before you apply.
+          Before you apply.
         </h2>
 
         <div className="beta-clarity-grid">

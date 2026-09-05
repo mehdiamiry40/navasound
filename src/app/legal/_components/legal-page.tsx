@@ -2,6 +2,14 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import InnerHeader from "../../_components/inner-header";
 
+const legalNavigation = [
+  { href: "/legal", label: "Overview", title: "Plain-English policies." },
+  { href: "/legal/privacy", label: "Privacy", title: "Privacy Notice" },
+  { href: "/legal/terms", label: "Website terms", title: "Website Terms" },
+  { href: "/legal/beta", label: "Beta terms", title: "Beta Submission Terms" },
+  { href: "/legal/refunds", label: "Refunds", title: "Refunds & Cancellations" },
+];
+
 export default function LegalPage({
   title,
   eyebrow,
@@ -18,11 +26,11 @@ export default function LegalPage({
         <aside className="legal-sidebar">
           <p className="section-kicker">LEGAL &amp; TRUST</p>
           <nav aria-label="Legal documents">
-            <Link href="/legal">Overview</Link>
-            <Link href="/legal/privacy">Privacy</Link>
-            <Link href="/legal/terms">Website terms</Link>
-            <Link href="/legal/beta">Beta terms</Link>
-            <Link href="/legal/refunds">Refunds</Link>
+            {legalNavigation.map((item) => (
+              <Link href={item.href} key={item.href} aria-current={title === item.title ? "page" : undefined}>
+                {item.label}<span aria-hidden="true">↗</span>
+              </Link>
+            ))}
           </nav>
           <p>Operated by Mehdi Emir<br />ABN 62 351 619 456<br />Queensland, Australia</p>
         </aside>

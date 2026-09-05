@@ -8,14 +8,29 @@ export default function Icon() {
     <div
       style={{
         alignItems: "center",
-        background: "#f04432",
+        background: "#ffffff",
         display: "flex",
         height: "100%",
         justifyContent: "center",
         width: "100%",
       }}
     >
-      <span style={{ color: "#ffffff", fontSize: 36, fontWeight: 900, letterSpacing: -4 }}>N</span>
+      <div
+        style={{
+          alignItems: "center",
+          border: "2px solid #116454",
+          borderRadius: "50%",
+          display: "flex",
+          gap: 4,
+          height: 56,
+          justifyContent: "center",
+          width: 56,
+        }}
+      >
+        {[12, 22, 28, 17].map((height) => (
+          <div key={height} style={{ background: "#116454", borderRadius: 3, display: "flex", height, width: 5 }} />
+        ))}
+      </div>
     </div>,
     size,
   );

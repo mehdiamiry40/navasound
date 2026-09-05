@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 const pages = [
-  ["/", "NavaSound Release Readiness — Your release, clearly handled"],
+  ["/", "NavaSound — Release preparation for independent artists"],
   ["/apply", "Apply for the Release Readiness beta | NavaSound"],
   ["/release", "Release readiness workspace | NavaSound"],
   ["/legal", "Legal and trust centre | NavaSound"],
@@ -33,40 +33,51 @@ for (const [route, title] of pages) {
 test("homepage separates the available beta from future distribution", async ({ page }) => {
   await page.goto("/");
 
-  await expect(
-    page.getByRole("heading", { name: "Available now. Coming later." }),
-  ).toBeVisible();
-  await expect(page.locator(".launch-status-card-now")).toContainText(
-    "Human fit and readiness review",
-  );
-  await expect(page.locator(".launch-status-card-now")).not.toContainText(
-    /upload|artwork|payment|DSP delivery|royalt/i,
-  );
-  await expect(page.locator(".launch-status-card-later")).toContainText(
-    "Royalty statements and payouts",
-  );
-  await expect(page.locator(".launch-status-card-later")).toContainText(
-    "Final agreement and payment, followed by secure audio and artwork upload",
-  );
-  await expect(page.locator(".step-phase")).toHaveText([
-    "AVAILABLE NOW",
-    "AVAILABLE NOW",
-    "AVAILABLE NOW",
-    "COMING LATER",
-    "COMING LATER",
+  const availableNow = page.locator(".launch-status-card-now");
+  await expect(availableNow).toHaveAttribute("aria-label", "Available now");
+  const preparationSteps = availableNow.getByRole("article");
+  await expect(preparationSteps).toHaveCount(3);
+  await expect(preparationSteps.getByRole("heading", { level: 2 })).toHaveText([
+    "Artist application",
+    "Release workspace",
+    "Human review",
   ]);
-  await expect(page.getByText("TARGET LAUNCH PRICING", { exact: true })).toBeVisible();
-  await expect(page.locator(".steps li").nth(2)).not.toContainText("artwork");
-  await expect(page.locator(".steps li").nth(3)).toContainText(
-    "final agreement, secure upload and provider delivery",
+  for (const step of await preparationSteps.all()) {
+    await expect(step).toBeVisible();
+    await expect(step.getByRole("heading", { level: 2 })).toBeVisible();
+    await expect(step.getByRole("link")).toBeVisible();
+  }
+  await expect(availableNow).not.toContainText(/upload|artwork|payment|delivery|royalt/i);
+  await expect(availableNow).toContainText("on your device");
+  await expect(availableNow).toContainText("human fit and readiness review");
+
+  const comingLater = page.locator(".launch-status-card-later");
+  await expect(comingLater.getByText("DISTRIBUTION", { exact: true })).toBeVisible();
+  await expect(comingLater).toContainText("Coming later · no release date reserved");
+  await expect(comingLater).toContainText("Secure audio and artwork uploads");
+  await expect(comingLater).toContainText("payments");
+  await expect(comingLater).toContainText("DSP delivery");
+  await expect(comingLater).toContainText("royalty reporting and payouts");
+  await expect(comingLater).toContainText(
+    "come only after provider integration, workflow testing and final terms.",
   );
+  const targetPricing = page.getByRole("region", { name: "Planned pricing. Per release." });
+  await expect(targetPricing).toBeVisible();
+  await expect(targetPricing.getByText("TARGET LAUNCH PRICING", { exact: true })).toBeVisible();
+  await expect(targetPricing).toContainText("Target pricing for future distribution, in Australian dollars.");
+  await expect(targetPricing).toContainText("No payment is taken now.");
+  const singlePrice = targetPricing.locator("dl > div").filter({ has: page.locator("dt", { hasText: /^Single$/ }) });
+  const albumPrice = targetPricing.locator("dl > div").filter({ has: page.locator("dt", { hasText: /^EP \/ Album$/ }) });
+  await expect(singlePrice.locator("dd")).toHaveText("A$10 target");
+  await expect(albumPrice.locator("dd")).toHaveText("A$20 target");
+  await expect(targetPricing).toContainText("Final inclusions, applicable tax and provider costs will be confirmed before payment opens.");
 });
 
 test("application page explains eligibility and the manual review process", async ({ page }) => {
   await page.goto("/apply");
 
   await expect(
-    page.getByRole("heading", { name: "Know the beta before you apply." }),
+    page.getByRole("heading", { name: "Before you apply." }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Who the beta is for" })).toBeVisible();
   await expect(

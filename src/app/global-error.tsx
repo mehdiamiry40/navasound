@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "./interior.css";
 
+const displayFont = Fraunces({ variable: "--font-display", subsets: ["latin"], weight: "400", style: ["normal", "italic"] });
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
@@ -14,7 +16,7 @@ export default function GlobalError({
   retry: () => void;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable}`}>
       <body>
         <title>NavaSound — Something went wrong</title>
         <a className="skip-link" href="#main-content">Skip to main content</a>

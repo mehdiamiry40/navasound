@@ -4,8 +4,8 @@
 
 - [x] Active ABN verified: 62 351 619 456.
 - [x] Legal operator confirmed: Mehdi Emir, individual/sole trader.
-- [ ] NavaSound business name approved by ASIC (application 2608-PJ-2897).
-- [ ] GST position reviewed before paid launch and monitored against turnover.
+- [x] NAVASOUND business name listed on the official ABN record from 25 August 2026. Verified 6 September 2026 against https://abr.business.gov.au/ABN/View?abn=62351619456 (record extracted 31 August 2026).
+- [ ] GST position reviewed before paid launch and monitored against turnover. The ABN record checked on 6 September 2026 states not currently registered for GST; this does not replace a paid-launch tax review.
 - [ ] Business banking and accounting records separated from personal activity.
 
 ## Public documents

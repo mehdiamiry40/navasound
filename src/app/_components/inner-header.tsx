@@ -1,13 +1,16 @@
 import Link from "next/link";
+import Brand from "./brand";
 
-export default function InnerHeader({ backLabel = "Back to the website" }: { backLabel?: string }) {
+export default function InnerHeader({ backLabel = "Back to home" }: { backLabel?: string }) {
   return (
     <header className="site-header apply-header">
       <Link className="brand" href="/" aria-label="NavaSound home">
-        <span className="brand-mark" aria-hidden="true"><i /><i /><i /></span>
-        <span>NavaSound</span>
+        <Brand />
       </Link>
-      <Link className="text-link" href="/">{backLabel}</Link>
+      <Link className="inner-back-link" href="/">
+        <span aria-hidden="true">←</span>
+        {backLabel}
+      </Link>
     </header>
   );
 }

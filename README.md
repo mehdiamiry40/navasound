@@ -17,12 +17,12 @@ Open `http://localhost:3000`.
 ## Quality checks
 
 ```bash
-npx playwright install chromium
+npx playwright install chromium firefox webkit
 npm run check
 ```
 
 The full quality gate runs linting, TypeScript, a production build and browser
-regression tests, including JavaScript-disabled privacy-boundary coverage.
+regression tests across Chromium, Firefox and WebKit, including JavaScript-disabled privacy-boundary coverage.
 
 ## Deployment
 
@@ -43,3 +43,7 @@ current privacy, website, beta-submission and pre-launch refund documents.
 
 Internal launch controls and the provider-dependent distribution-agreement drafting
 framework are stored under `docs/legal/` and `docs/providers/`.
+
+## Launch status
+
+See [the launch-readiness record](docs/LAUNCH-READINESS.md) for verified website checks and the business/provider dependencies that remain before a paid distribution launch. The current product remains the Release Readiness beta.
