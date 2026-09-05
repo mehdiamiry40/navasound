@@ -7,7 +7,7 @@
 ## Parties and commercial schedule
 
 - Operator: Mehdi Emir, ABN 62 351 619 456.
-- Trading name: NavaSound, subject to ASIC registration approval.
+- Trading name: NAVASOUND; listed on the official ABN record from 25 August 2026 (checked 6 September 2026).
 - Artist/label legal name, address, tax status and payment details.
 - Release, territory, stores, target date, term and agreed price.
 - Optional services and all provider, takedown, amendment or payout charges.
@@ -55,7 +55,7 @@
 
 Do not make this agreement customer-facing until:
 
-- ASIC approves the NavaSound business name.
+- Business-name registration details are included accurately (NAVASOUND is listed on the ABN record from 25 August 2026).
 - A backend provider is selected and its contract is signed.
 - Pricing and GST treatment are confirmed.
 - Secure upload, payment and payout methods are tested.

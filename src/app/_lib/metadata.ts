@@ -7,7 +7,7 @@ const socialImage = {
   url: `${SITE_URL}/opengraph-image`,
   width: 1200,
   height: 630,
-  alt: "NavaSound Release Readiness — Your release, clearly handled",
+  alt: "NavaSound — Release prep for artists. Built around your music.",
 };
 
 export type PublicPath =

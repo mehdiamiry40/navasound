@@ -9,19 +9,26 @@ export const metadata = createPageMetadata({
   path: "/release",
 });
 
-export default function ReleasePage() {
+export default async function ReleasePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const format = (await searchParams).format;
+  const initialReleaseType = format === "EP" || format === "Album" ? format : "Single";
+
   return (
     <main id="main-content" className="release-page">
       <InnerHeader />
       <section className="release-hero">
         <p className="eyebrow"><span /> Release Readiness workspace</p>
-        <h1>Metadata first.<br /><em>Masters later.</em></h1>
+        <h1>Your release brief.</h1>
         <div>
           <p>
-            Preparation is available now: build a clean release brief before any
-            provider delivery. Your answers stay in this browser and download as a
-            text file on your device. Download or copy the brief, then manually email
-            it to NavaSound for readiness review. Do not attach masters or artwork.
+            Bring your artist details, credits and track metadata together.
+            Your answers stay in this browser. Download or copy the brief, then
+            manually email it to NavaSound for readiness review. Do not attach
+            masters or artwork.
           </p>
           <Link className="text-link" href="/legal/beta">Read beta submission terms ↗</Link>
         </div>
@@ -29,7 +36,7 @@ export default function ReleasePage() {
       <div className="release-boundary">
         <span>NO UPLOAD</span><span>NO PAYMENT</span><span>NO SERVER STORAGE</span><span>LOCAL DOWNLOAD ONLY</span>
       </div>
-      <ReleaseBriefForm />
+      <ReleaseBriefForm initialReleaseType={initialReleaseType} />
       <footer className="apply-footer release-footer">
         <p>Need help preparing metadata?</p>
         <a href="mailto:hello@navasound.com">hello@navasound.com</a>

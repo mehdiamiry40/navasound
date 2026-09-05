@@ -14,19 +14,39 @@ test("security headers cover entry and form routes", async ({ page }) => {
   }
 });
 
-test("legacy form.submit cannot cross the local-only boundary", async ({ page }) => {
+test("legacy form.submit cannot cross the local-only boundary", async ({ page, browserName }) => {
   const canary = "native-submit-canary";
-  const requests: string[] = [];
-  page.on("request", (request) => requests.push(request.url()));
+  const requests: { url: string; method: string; body: string }[] = [];
+  page.on("request", (request) => requests.push({ url: request.url(), method: request.method(), body: request.postData() ?? "" }));
 
   await page.goto("/apply");
   await page.getByLabel("Contact name").fill(canary);
   const originalUrl = page.url();
-  await page.locator("form").evaluate((form: HTMLFormElement) => form.submit());
+  const violation = await page.locator("form").evaluate(async (form: HTMLFormElement, isFirefox) => {
+    const blocked = new Promise<{ directive: string; disposition: string }>((resolve) => {
+      document.addEventListener("securitypolicyviolation", (event) => {
+        resolve({ directive: event.effectiveDirective, disposition: event.disposition });
+      }, { once: true });
+    });
+    try {
+      form.submit();
+    } catch (error) {
+      // Firefox throws NS_ERROR_CSP_FORM_ACTION_VIOLATION with empty name/message.
+      if (
+        !isFirefox || typeof error !== "object" || error === null ||
+        !("result" in error) || error.result !== 0x805a0061 ||
+        !("name" in error) || error.name !== "" ||
+        !("message" in error) || error.message !== ""
+      ) throw error;
+    }
+    return blocked;
+  }, browserName === "firefox");
   await page.waitForTimeout(250);
 
+  expect(violation).toEqual({ directive: "form-action", disposition: "enforce" });
   expect(page.url()).toBe(originalUrl);
-  expect(requests.some((url) => url.includes(canary))).toBe(false);
+  expect(requests.some(({ url, body }) => `${url}${body}`.includes(canary))).toBe(false);
+  expect(requests.filter(({ method }) => !["GET", "HEAD"].includes(method))).toEqual([]);
 });
 
 test("submitter overrides cannot bypass the form-action boundary", async ({ page }) => {
