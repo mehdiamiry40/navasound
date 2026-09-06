@@ -37,14 +37,14 @@ test("homepage separates the available beta from future distribution", async ({ 
   await expect(availableNow).toHaveAttribute("aria-label", "Available now");
   const preparationSteps = availableNow.getByRole("article");
   await expect(preparationSteps).toHaveCount(3);
-  await expect(preparationSteps.getByRole("heading", { level: 2 })).toHaveText([
+  await expect(preparationSteps.getByRole("heading", { level: 3 })).toHaveText([
     "Artist application",
     "Release workspace",
     "Human review",
   ]);
   for (const step of await preparationSteps.all()) {
     await expect(step).toBeVisible();
-    await expect(step.getByRole("heading", { level: 2 })).toBeVisible();
+    await expect(step.getByRole("heading", { level: 3 })).toBeVisible();
     await expect(step.getByRole("link")).toBeVisible();
   }
   await expect(availableNow).not.toContainText(/upload|artwork|payment|delivery|royalt/i);

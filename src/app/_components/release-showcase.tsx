@@ -12,20 +12,11 @@ export function HeroArtwork() {
         className="studio-image"
         src={musicStillLife}
         fill
-        sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1151px) calc(100vw - 48px), 1104px"
+        sizes="(max-width: 359px) calc(100vw - 32px), (max-width: 767px) calc(100vw - 40px), (max-width: 1151px) calc(100vw - 48px), 1104px"
         loading="eager"
         fetchPriority="high"
         alt="Black studio headphones resting on a walnut piano in soft window light"
       />
-    </div>
-  );
-}
-
-export function RecordMotif() {
-  return (
-    <div className="record-motif" aria-hidden="true">
-      {Array.from({ length: 8 }, (_, index) => <span className="record-groove" key={index} style={{ inset: `${4 + index * 3.8}%` }} />)}
-      <div className="record-label"><span>N</span><i /></div>
     </div>
   );
 }
