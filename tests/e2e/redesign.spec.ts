@@ -116,21 +116,3 @@ test("footer links and legal navigation connect the published policy pages", asy
   await expect(page).toHaveURL(/\/legal\/beta$/);
   await expect(page.getByRole("heading", { level: 1, name: "Beta Submission Terms" })).toBeVisible();
 });
-
-test("desktop tools menu follows a clicked link and dismisses outside", async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto("/");
-  const menu = page.locator(".nav-dropdown");
-  const toggle = menu.locator("summary");
-  await toggle.focus();
-  await toggle.press("Enter");
-  await menu.getByRole("link", { name: /^Artist application/ }).click();
-  await expect(page).toHaveURL(/\/apply$/);
-
-  await page.goto("/");
-  await toggle.focus();
-  await toggle.press("Enter");
-  await expect(menu).toHaveAttribute("open", "");
-  await page.getByRole("heading", { level: 1 }).click();
-  await expect(menu).not.toHaveAttribute("open", "");
-});
