@@ -1,22 +1,24 @@
 import Link from "next/link";
 import Brand from "./_components/brand";
 import SiteHeader from "./_components/site-header";
-import { Arrow, FeatureModule, HeroArtwork, ToolIcon } from "./_components/release-showcase";
+import { Arrow, HeroArtwork, RecordMotif } from "./_components/release-showcase";
 
 const preparation = [
   { title: "Artist application", copy: "Introduce your music and your release plans to the founding beta.", href: "/apply", action: "APPLY" },
   { title: "Release workspace", copy: "Bring artist names, credits and track details together on your device.", href: "/release", action: "OPEN WORKSPACE" },
   { title: "Human review", copy: "Share your details for a human fit and readiness review.", href: "/legal/beta", action: "BETA GUIDE" },
 ];
+const briefDetails = [
+  { title: "Give it an identity.", copy: "Release title, artist names, format and genre. Start with the details that make the music yours." },
+  { title: "Credit every contribution.", copy: "Performers, writers, producers and versions. Keep the people behind each track in the picture." },
+  { title: "Find the missing pieces.", copy: "Check your rights, permissions and release details before asking for a human review." },
+  { title: "Keep a copy.", copy: "Copy or download your brief. It stays on your device until you choose to share it." },
+];
 const resources = [
-  { title: "RELEASE BRIEF", href: "/release", icon: 0 },
-  { title: "ARTIST APPLICATION", href: "/apply", icon: 1 },
-  { title: "BETA GUIDE", href: "/legal/beta", icon: 2 },
-  { title: "PRIVACY NOTICE", href: "/legal/privacy", icon: 3 },
-  { title: "WEBSITE TERMS", href: "/legal/terms", icon: 0 },
-  { title: "REFUND POSITION", href: "/legal/refunds", icon: 2 },
-  { title: "TARGET PRICING", href: "/#pricing", icon: 1 },
-  { title: "EMAIL SUPPORT", href: "mailto:hello@navasound.com", icon: 3 },
+  { title: "The workspace", subtitle: "Put your release in order", href: "/release" },
+  { title: "Artist application", subtitle: "Introduce your music", href: "/apply" },
+  { title: "The beta guide", subtitle: "Know what to expect", href: "/legal/beta" },
+  { title: "Say hello", subtitle: "hello@navasound.com", href: "mailto:hello@navasound.com" },
 ];
 const questions = [
   { question: "Can I release my music through NavaSound today?", answer: "You can apply for the Release Readiness beta and prepare a release brief today. Store delivery is not live yet. It will open after provider integration, secure workflow testing and final terms are complete. Applying does not guarantee acceptance or reserve a release date." },
@@ -48,60 +50,64 @@ export default function Home() {
 
           <section className="hero-band" aria-label="Explore the Release Readiness beta">
             <HeroArtwork />
-            <div className="intro-grid launch-status-card-now" aria-label="Available now">{preparation.map(item => <article key={item.title}><div><h2>{item.title}</h2><p>{item.copy}</p></div><Link href={item.href}>{item.action}<Arrow diagonal /></Link></article>)}</div>
-          </section>
-
-          <section className="trust-strip" aria-label="Current service availability">
-            <div className="fact-grid"><div><strong>Keep your files</strong><span>No masters or artwork requested</span></div><div><strong>No payment today</strong><span>Start with preparation</span></div><div><strong>Your rights</strong><span>Ownership stays with you</span></div><div><strong>Human review</strong><span>Fit and release readiness</span></div></div>
-            <p className="trust-strapline">RELEASE READINESS NOW. DISTRIBUTION COMES LATER.</p>
-            <div className="format-wordmarks" aria-label="For singles, EPs, albums and independent labels"><span>Singles<span aria-hidden="true">↗</span></span><span>EPs.</span><span>Albums</span><span>Independent <i>labels.</i></span></div>
-          </section>
-
-          <div className="feature-group">
-            <FeatureModule id="how-it-works" number="01" label="RELEASE METADATA" title="Everything your release needs, in one brief." href="/release#release-identity" linkLabel="EXPLORE THE RELEASE WORKSPACE" items={[
-              { title: "RELEASE IDENTITY", copy: "Keep the release title, artist names, format and genre consistent from the start.", icon: 0 },
-              { title: "TRACK CREDITS", copy: "Bring performers, writers, producers and version details into a clear record.", icon: 1 },
-              { title: "READINESS CHECKS", copy: "Spot the information you still need before asking for a human review.", icon: 2 },
-              { title: "LOCAL EXPORT", copy: "Download or copy a text brief. You choose when and how to share it.", icon: 3 },
-            ]} />
-            <FeatureModule id="track-details" number="02" label="TRACKS & CREDITS" title="Every track, every credit. All in the right order." href="/release#track-metadata" linkLabel="BUILD YOUR RELEASE BRIEF" items={[
-              { title: "SINGLES", copy: "One track, with space for every artist, writer, producer and version detail.", icon: 1 },
-              { title: "EPS", copy: "Keep a short project organised, with individual credits for each track.", icon: 0 },
-              { title: "ALBUMS", copy: "Bring the complete track list together in one structured release brief.", icon: 3 },
-              { title: "TRACK ORDER", copy: "Review the sequence and details before you export your release metadata.", icon: 2 },
-            ]} />
-            <FeatureModule id="readiness" number="03" label="HUMAN READINESS REVIEW" title="Know what’s ready. And what needs a closer look." href="/apply" linkLabel="APPLY FOR HUMAN READINESS REVIEW" items={[
-              { title: "RIGHTS & PERMISSIONS", copy: "Know which rights, samples and credits need confirmation before sharing your release.", icon: 2 },
-              { title: "A HUMAN REVIEW", copy: "Email your details for a review of fit and readiness. Next steps are confirmed by email.", icon: 0 },
-              { title: "A CLEAR RELEASE ROUTE", copy: "Preparation is open now. Provider delivery, secure uploads and payments come later.", icon: 3 },
-            ]} />
-          </div>
-
-          <section className="pricing-module split-module" id="pricing" aria-labelledby="pricing-heading">
-            <div className="split-copy">
-              <p className="section-kicker">TARGET LAUNCH PRICING</p>
-              <div><h2 id="pricing-heading">Planned pricing.<br />Per release.</h2><p>Target pricing for future distribution, in Australian dollars. No payment is taken now.</p></div>
-            </div>
-            <div className="pricing-details">
-              <dl className="compact-prices"><div><dt>Single</dt><dd>A$10<span> target</span></dd></div><div><dt>EP / Album</dt><dd>A$20<span> target</span></dd></div></dl>
-              <p className="pricing-qualification">Final inclusions, applicable tax and provider costs will be confirmed before payment opens.</p>
-              <Link className="text-link" href="/legal/refunds">PRICING &amp; REFUND DETAILS <Arrow /></Link>
+            <div className="studio-caption"><span>FOR THE MUSIC YOU’RE MAKING.</span><span>AND EVERYTHING THAT COMES WITH IT.</span></div>
+            <div className="intro-path launch-status-card-now" aria-label="Available now">
+              {preparation.map((item, index) => <article key={item.title}><span className="path-number" aria-hidden="true">0{index + 1}</span><div><h2>{item.title}</h2><p>{item.copy}</p><Link className="text-link" href={item.href}>{item.action}<Arrow /></Link></div></article>)}
             </div>
           </section>
 
-          <section className="resources-module split-module" aria-labelledby="resources-heading"><div className="split-copy"><p className="section-kicker">YOUR RELEASE TOOLKIT</p><div><h2 id="resources-heading">Made for<br />independent music.</h2><p>Preparation tools, clear terms and a direct line to a human.</p></div></div><div className="resource-grid">{resources.map(item => <Link href={item.href} key={item.title}><ToolIcon kind={item.icon} /><Arrow diagonal /><span>{item.title}</span></Link>)}</div></section>
-
-          <section className="principle-grid" aria-label="NavaSound service principles">
-            <article><p>Prepare a local release brief and apply for a human fit and readiness review. Nothing is automatically submitted.</p><div><strong>RELEASE READINESS</strong><span>Available now</span></div></article>
-            <article><p>Applying never transfers your masters. The target future offer is 0% NavaSound commission on standard DSP royalties; provider deductions and payout costs may apply.</p><div><strong>ARTIST OWNERSHIP</strong><span>Your music stays yours</span></div></article>
-            <article className="launch-status-card-later"><p>Secure audio and artwork uploads, payments, DSP delivery, royalty reporting and payouts come only after provider integration, workflow testing and final terms.</p><div><strong>DISTRIBUTION</strong><span>Coming later · no release date reserved</span></div></article>
+          <section className="brief-editorial" id="how-it-works" aria-labelledby="brief-heading">
+            <div className="brief-heading">
+              <p className="section-kicker">01 / THE RELEASE BRIEF</p>
+              <h2 className="display-heading" id="brief-heading">Good music.<br /><em>Clear details.</em></h2>
+              <p className="editorial-intro">There’s a lot behind a finished track. Give the names, credits and decisions a place of their own.</p>
+              <Link className="text-link" href="/release#release-identity">EXPLORE THE WORKSPACE <Arrow /></Link>
+            </div>
+            <ol className="brief-details">{briefDetails.map((item, index) => <li key={item.title}><span aria-hidden="true">0{index + 1}</span><div><h3>{item.title}</h3><p>{item.copy}</p></div></li>)}</ol>
           </section>
 
-          <section className="help-module split-module" id="questions" aria-labelledby="questions-heading"><div className="help-copy"><h2 id="questions-heading">Still wondering?</h2><p>A few answers before you begin.<br />For everything else, there’s a human.</p><a className="text-link" href="mailto:hello@navasound.com">TALK TO A HUMAN <Arrow /></a></div><div className="faq-list">{questions.map(item => <details key={item.question}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div></section>
+          <section className="record-section" id="track-details" aria-labelledby="record-heading">
+            <RecordMotif />
+            <div className="record-heading"><p className="section-kicker">02 / TRACKS &amp; CREDITS</p><h2 className="display-heading" id="record-heading">One song.<br />Or a <em>whole world.</em></h2><p>A first single, a short project, a complete album.<br />Every track deserves the same care.</p></div>
+            <div className="record-formats">
+              <div><span className="format-index">01</span><h3>Single</h3><p>One track. Space for every artist, writer, producer and version.</p></div>
+              <div><span className="format-index">02</span><h3>EP</h3><p>A short project, with the credits for each track kept together.</p></div>
+              <div><span className="format-index">03</span><h3>Album</h3><p>The full picture, from the opening track to the final credit.</p></div>
+            </div>
+            <div className="record-bottom"><p>Set the order. Check the credits. Keep your copy.</p><Link className="text-link" href="/release#track-metadata">BUILD YOUR RELEASE BRIEF <Arrow /></Link></div>
+          </section>
+
+          <section className="human-section" id="readiness" aria-labelledby="human-heading">
+            <p className="section-kicker">03 / A HUMAN IN THE LOOP</p>
+            <div className="human-heading"><h2 className="display-heading" id="human-heading">A fresh perspective.<br /><em>A real conversation.</em></h2><p>Before the next step, a useful conversation. Share your plans, credits and rights information for a human review of fit and readiness.</p></div>
+            <ol className="review-route">
+              <li><span className="route-number" aria-hidden="true">1</span><h3>Tell us about it.</h3><p>Prepare your artist application or release brief. A little context helps us understand the project.</p></li>
+              <li><span className="route-number" aria-hidden="true">2</span><h3>Share when you’re ready.</h3><p>Manually email your details. Nothing is sent automatically, and no audio or artwork is requested.</p></li>
+              <li><span className="route-number" aria-hidden="true">3</span><h3>Talk through what’s next.</h3><p>A person reviews fit and readiness. Next steps are confirmed by email; a place isn’t guaranteed.</p></li>
+            </ol>
+            <Link className="human-link" href="/apply">Let’s start with your music <span><Arrow diagonal /></span></Link>
+          </section>
+
+          <section className="ownership-note" aria-labelledby="ownership-heading">
+            <p className="section-kicker">INDEPENDENT, BY NATURE</p>
+            <h2 className="display-heading" id="ownership-heading">Yours, from<br />the <em>first note.</em></h2>
+            <p>Preparing a brief or applying never transfers ownership of your masters or creates a distribution agreement.</p>
+            <span>No payment today. No masters to upload.</span>
+          </section>
+
+          <section className="pricing-section" id="pricing" aria-labelledby="pricing-heading">
+            <div className="pricing-heading"><p className="section-kicker">TARGET LAUNCH PRICING</p><h2 className="display-heading" id="pricing-heading">Planned pricing.<br />Per release.</h2><p>Target pricing for future distribution, in Australian dollars. No payment is taken now.</p></div>
+            <div className="price-ledger"><dl className="compact-prices"><div><dt>Single</dt><dd>A$10<span> target</span></dd></div><div><dt>EP / Album</dt><dd>A$20<span> target</span></dd></div></dl><p className="pricing-qualification">Final inclusions, applicable tax and provider costs will be confirmed before payment opens.</p><Link className="text-link" href="/legal/refunds">PRICING &amp; REFUND DETAILS <Arrow /></Link></div>
+          </section>
+          <aside className="distribution-note launch-status-card-later" aria-label="Future distribution availability"><div><strong>DISTRIBUTION</strong><span>Coming later · no release date reserved</span></div><p>Secure audio and artwork uploads, payments, DSP delivery, royalty reporting and payouts come only after provider integration, workflow testing and final terms.</p></aside>
+
+          <section className="resource-section" aria-labelledby="resources-heading"><div className="resource-heading"><p className="section-kicker">A FEW USEFUL PLACES</p><h2 id="resources-heading">Pick up from here.</h2></div><div className="resource-links">{resources.map((item, index) => <Link href={item.href} key={item.title}><span className="resource-number">0{index + 1}</span><span className="resource-name">{item.title}<small>{item.subtitle}</small></span><Arrow diagonal /></Link>)}</div></section>
+
+          <section className="questions-section" id="questions" aria-labelledby="questions-heading"><div className="questions-heading"><p className="section-kicker">BEFORE YOU BEGIN</p><h2 className="display-heading" id="questions-heading">A few good questions.</h2></div><div className="faq-list">{questions.map(item => <details key={item.question}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div><p className="question-contact">Still wondering? <a href="mailto:hello@navasound.com">Talk to a human <Arrow diagonal /></a></p></section>
         </div>
       </main>
 
-      <footer className="site-footer shell"><div className="footer-spacer" /><div className="footer-link-grid">{footerGroups.map(group => <div key={group.label}><p>{group.label}</p>{group.links.map(([label, href]) => <Link key={label} href={href}>{label}</Link>)}</div>)}</div><div className="footer-base"><div><Link className="brand" href="/" aria-label="NavaSound home"><Brand /></Link><p>© 2026 · MEHDI EMIR · ABN 62 351 619 456</p></div><span className="footer-status"><i /> RELEASE READINESS BETA OPEN</span><a className="footer-contact" href="mailto:hello@navasound.com">SAY HELLO <Arrow /></a></div><p className="footer-boundary">Queensland, Australia · Distribution, final pricing and store availability remain subject to provider integration and final service terms.</p></footer>
+      <footer className="site-footer shell"><div className="footer-link-grid">{footerGroups.map(group => <div key={group.label}><p>{group.label}</p>{group.links.map(([label, href]) => <Link key={label} href={href}>{label}</Link>)}</div>)}</div><div className="footer-signoff" aria-hidden="true">NAVA<span>SOUND</span><i>↗</i></div><div className="footer-base"><div><Link className="brand" href="/" aria-label="NavaSound home"><Brand /></Link><p>© 2026 · MEHDI EMIR · ABN 62 351 619 456</p></div><span className="footer-status"><i /> RELEASE READINESS BETA OPEN</span><a className="footer-contact" href="mailto:hello@navasound.com">SAY HELLO <Arrow /></a></div><p className="footer-boundary">Queensland, Australia · Distribution, final pricing and store availability remain subject to provider integration and final service terms.</p></footer>
     </>
   );
 }
