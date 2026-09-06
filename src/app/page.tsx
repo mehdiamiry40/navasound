@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Brand from "./_components/brand";
 import SiteHeader from "./_components/site-header";
-import { Arrow, FeatureModule, FormatPreview, HeroPreview, ToolIcon } from "./_components/release-showcase";
+import { Arrow, FeatureModule, HeroArtwork, ToolIcon } from "./_components/release-showcase";
 
 const preparation = [
   { title: "Artist application", copy: "Introduce your music and your release plans to the founding beta.", href: "/apply", action: "APPLY" },
@@ -47,7 +47,7 @@ export default function Home() {
           </section>
 
           <section className="hero-band" aria-label="Explore the Release Readiness beta">
-            <HeroPreview />
+            <HeroArtwork />
             <div className="intro-grid launch-status-card-now" aria-label="Available now">{preparation.map(item => <article key={item.title}><div><h2>{item.title}</h2><p>{item.copy}</p></div><Link href={item.href}>{item.action}<Arrow diagonal /></Link></article>)}</div>
           </section>
 
@@ -58,19 +58,19 @@ export default function Home() {
           </section>
 
           <div className="feature-group">
-            <FeatureModule id="how-it-works" number="01" label="RELEASE METADATA" title="Everything your release needs, in one brief." type="metadata" href="/release#release-identity" linkLabel="EXPLORE THE RELEASE WORKSPACE" items={[
+            <FeatureModule id="how-it-works" number="01" label="RELEASE METADATA" title="Everything your release needs, in one brief." href="/release#release-identity" linkLabel="EXPLORE THE RELEASE WORKSPACE" items={[
               { title: "RELEASE IDENTITY", copy: "Keep the release title, artist names, format and genre consistent from the start.", icon: 0 },
               { title: "TRACK CREDITS", copy: "Bring performers, writers, producers and version details into a clear record.", icon: 1 },
               { title: "READINESS CHECKS", copy: "Spot the information you still need before asking for a human review.", icon: 2 },
               { title: "LOCAL EXPORT", copy: "Download or copy a text brief. You choose when and how to share it.", icon: 3 },
             ]} />
-            <FeatureModule id="track-details" number="02" label="TRACKS & CREDITS" title="Every track, every credit. All in the right order." type="tracks" href="/release#track-metadata" linkLabel="BUILD YOUR RELEASE BRIEF" items={[
+            <FeatureModule id="track-details" number="02" label="TRACKS & CREDITS" title="Every track, every credit. All in the right order." href="/release#track-metadata" linkLabel="BUILD YOUR RELEASE BRIEF" items={[
               { title: "SINGLES", copy: "One track, with space for every artist, writer, producer and version detail.", icon: 1 },
               { title: "EPS", copy: "Keep a short project organised, with individual credits for each track.", icon: 0 },
               { title: "ALBUMS", copy: "Bring the complete track list together in one structured release brief.", icon: 3 },
               { title: "TRACK ORDER", copy: "Review the sequence and details before you export your release metadata.", icon: 2 },
             ]} />
-            <FeatureModule id="readiness" number="03" label="HUMAN READINESS REVIEW" title="Know what’s ready. And what needs a closer look." type="review" href="/apply" linkLabel="APPLY FOR HUMAN READINESS REVIEW" items={[
+            <FeatureModule id="readiness" number="03" label="HUMAN READINESS REVIEW" title="Know what’s ready. And what needs a closer look." href="/apply" linkLabel="APPLY FOR HUMAN READINESS REVIEW" items={[
               { title: "RIGHTS & PERMISSIONS", copy: "Know which rights, samples and credits need confirmation before sharing your release.", icon: 2 },
               { title: "A HUMAN REVIEW", copy: "Email your details for a review of fit and readiness. Next steps are confirmed by email.", icon: 0 },
               { title: "A CLEAR RELEASE ROUTE", copy: "Preparation is open now. Provider delivery, secure uploads and payments come later.", icon: 3 },
@@ -78,8 +78,15 @@ export default function Home() {
           </div>
 
           <section className="pricing-module split-module" id="pricing" aria-labelledby="pricing-heading">
-            <div className="split-copy"><p className="section-kicker">TARGET LAUNCH PRICING</p><div><h2 id="pricing-heading">Planned pricing.<br />Per release.</h2><p>Target pricing for future distribution, in Australian dollars. No payment is taken now.</p><dl className="compact-prices"><div><dt>Single</dt><dd>A$10<span> target</span></dd></div><div><dt>EP / Album</dt><dd>A$20<span> target</span></dd></div></dl><p className="pricing-qualification">Final inclusions, applicable tax and provider costs will be confirmed before payment opens.</p><Link className="text-link" href="/legal/refunds">PRICING &amp; REFUND DETAILS <Arrow /></Link></div></div>
-            <FormatPreview />
+            <div className="split-copy">
+              <p className="section-kicker">TARGET LAUNCH PRICING</p>
+              <div><h2 id="pricing-heading">Planned pricing.<br />Per release.</h2><p>Target pricing for future distribution, in Australian dollars. No payment is taken now.</p></div>
+            </div>
+            <div className="pricing-details">
+              <dl className="compact-prices"><div><dt>Single</dt><dd>A$10<span> target</span></dd></div><div><dt>EP / Album</dt><dd>A$20<span> target</span></dd></div></dl>
+              <p className="pricing-qualification">Final inclusions, applicable tax and provider costs will be confirmed before payment opens.</p>
+              <Link className="text-link" href="/legal/refunds">PRICING &amp; REFUND DETAILS <Arrow /></Link>
+            </div>
           </section>
 
           <section className="resources-module split-module" aria-labelledby="resources-heading"><div className="split-copy"><p className="section-kicker">YOUR RELEASE TOOLKIT</p><div><h2 id="resources-heading">Made for<br />independent music.</h2><p>Preparation tools, clear terms and a direct line to a human.</p></div></div><div className="resource-grid">{resources.map(item => <Link href={item.href} key={item.title}><ToolIcon kind={item.icon} /><Arrow diagonal /><span>{item.title}</span></Link>)}</div></section>
