@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const responsiveRoutes = ["/", "/apply", "/release", "/legal", "/legal/privacy"];
+const responsiveRoutes = ["/", "/apply", "/release", "/about", "/guide", "/contact", "/legal", "/legal/privacy"];
 const viewportWidths = [320, 390, 768, 1440];
 
 for (const width of viewportWidths) {

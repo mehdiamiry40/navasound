@@ -205,6 +205,7 @@ ol.beta-clarity-list { list-style: decimal; }
 .release-hero h1 { font-family: var(--font-display), Georgia, serif; font-size: clamp(46px, 5vw, 60px); font-weight: 400; letter-spacing: -.035em; line-height: 1.1; margin: 0; max-width: 540px; }
 .release-hero > div p { color: var(--muted); font-size: 16px; line-height: 1.8; margin: 0 0 22px; max-width: 500px; }
 .release-hero .text-link { font-size: 14px; }
+.release-help-links { display: flex; flex-wrap: wrap; gap: 4px 24px; }
 .release-boundary { align-items: center; display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 0 auto; max-width: 1104px; padding: 0 0 40px; width: calc(100% - 48px); }
 .release-boundary span { align-items: center; color: var(--muted); display: inline-flex; font-size: 11px; font-weight: 500; gap: 8px; letter-spacing: .03em; line-height: 1.7; }
 .release-boundary span::before { background: var(--signal); content: ""; height: 4px; width: 4px; }

@@ -1,0 +1,131 @@
+.editorial-page .text-link { font: 450 13px/20px var(--font-geist-sans), sans-serif; text-transform: none; gap: 8px; }
+.editorial-page .button { font: 500 14px/20px var(--font-geist-sans), sans-serif; text-transform: none; min-height: 44px; border-radius: 6px; padding: 11px 18px; }
+.editorial-page .button::after { display: none; }
+.editorial-hero { padding: 74px 0 64px; border-bottom: 1px solid var(--line); }
+.editorial-kicker { color: var(--signal-text); font-size: 12px; line-height: 20px; margin-bottom: 20px; }
+.editorial-hero h1 { font-size: 66px; line-height: 1.08; letter-spacing: -.04em; max-width: 830px; }
+.editorial-description { color: var(--muted); font-size: 17px; line-height: 29px; max-width: 610px; margin-top: 24px; }
+.editorial-content { display: flex; flex-direction: column; padding-bottom: 76px; }
+.editorial-content > * { width: 100%; min-width: 0; max-width: none; }
+.editorial-content h2 { font-size: 30px; line-height: 39px; letter-spacing: -.03em; }
+.editorial-content h3 { font-size: 19px; line-height: 28px; letter-spacing: -.02em; font-weight: 500; }
+.editorial-next { display: flex; justify-content: space-between; align-items: center; gap: 36px; margin-top: 64px; padding-top: 36px; border-top: 1px solid var(--line); }
+.editorial-next .editorial-kicker { margin-bottom: 10px; }
+.editorial-next .button { flex-shrink: 0; }
+
+/* About reads as an open statement and a short set of principles. */
+.about-statement, .about-now { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; padding-block: 62px; }
+.about-statement h2, .about-now h2 { max-width: 360px; }
+.about-statement p, .about-now p { font-size: 16px; line-height: 28px; color: var(--muted); }
+.about-statement p + p, .about-now p + p { margin-top: 18px; }
+.about-principles { border-block: 1px solid var(--line); padding-block: 54px 12px; }
+.about-principles .editorial-kicker { margin-bottom: 15px; }
+.about-principles ol { list-style: none; margin: 34px 0 0; padding: 0; }
+.about-principles li { display: grid; grid-template-columns: 40px 1fr 1.4fr; gap: 28px; padding-block: 26px; border-top: 1px solid var(--line); }
+.about-principles li > span { font-size: 11px; line-height: 28px; color: var(--signal-text); }
+.about-principles li > p { color: var(--muted); font-size: 14px; line-height: 25px; }
+.about-now { padding-bottom: 0; }
+.about-now .text-link { margin-top: 15px; }
+
+/* Guide: chapter index, reading column, and a local checklist. */
+.guide-index { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px; padding-block: 26px; border-bottom: 1px solid var(--line); }
+.guide-index a { display: flex; align-items: baseline; gap: 12px; font-size: 13px; line-height: 22px; min-height: 44px; }
+.guide-index a > span { color: var(--signal-text); font-size: 10px; }
+.guide-index a:hover { color: var(--signal-text); text-decoration: underline; text-underline-offset: 4px; }
+.guide-chapter { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; padding-block: 54px; border-bottom: 1px solid var(--line); }
+.guide-chapter-number { color: var(--signal-text); font: 400 56px/1.1 var(--font-display), Georgia, serif; }
+.guide-chapter-copy { max-width: 700px; }
+.guide-chapter-copy > p { margin-top: 20px; color: var(--muted); font-size: 15px; line-height: 27px; }
+.guide-chapter-copy ul { margin: 18px 0 0; padding-left: 19px; color: var(--muted); font-size: 14px; line-height: 26px; }
+.guide-chapter-copy li + li { margin-top: 7px; }
+.guide-chapter-copy .text-link { margin-top: 14px; }
+.guide-note, .guide-chapter-copy > .guide-note { color: var(--muted); font-size: 12px; line-height: 22px; }
+.guide-checklist { margin-top: 60px; padding: 32px; border: 1px solid var(--line); background: var(--white); }
+.guide-checklist-header { display: flex; justify-content: space-between; align-items: end; gap: 30px; }
+.guide-checklist-header .section-kicker { color: var(--signal-text); font: 500 11px/19px var(--font-geist-sans), sans-serif; letter-spacing: .03em; margin-bottom: 12px; }
+.guide-checklist-header h2 { font-size: 27px; line-height: 35px; }
+.guide-checklist-progress { min-width: 150px; }
+.guide-checklist-progress progress { display: block; width: 100%; height: 5px; appearance: none; border: 0; border-radius: 0; background: var(--line); color: var(--signal); accent-color: var(--signal); }
+.guide-checklist-progress progress::-webkit-progress-bar { background: var(--line); }
+.guide-checklist-progress progress::-webkit-progress-value { background: var(--signal); }
+.guide-checklist-progress progress::-moz-progress-bar { background: var(--signal); }
+.guide-checklist-progress p { color: var(--muted); font-size: 11px; line-height: 19px; margin-top: 10px; }
+.guide-checklist-items { border: 0; padding: 0; margin: 28px 0 0; min-width: 0; }
+.guide-checklist-items legend { font-size: 12px; line-height: 21px; color: var(--muted); margin-bottom: 12px; padding: 0; }
+.guide-checklist-items label { display: flex; align-items: center; gap: 14px; padding-block: 14px; min-height: 52px; font-size: 15px; line-height: 25px; border-top: 1px solid var(--line); cursor: pointer; }
+.guide-checklist-items input { width: 18px; height: 18px; flex-shrink: 0; margin: 0; accent-color: var(--signal); }
+.guide-checklist-items input:checked + span { color: var(--signal-text); }
+.guide-checklist-actions { display: flex; justify-content: space-between; align-items: center; gap: 30px; margin-top: 28px; }
+.guide-checklist-actions .guide-note { max-width: 650px; }
+.guide-checklist-actions button.text-link { padding: 0; background: transparent; border: 0; flex-shrink: 0; }
+.guide-checklist-actions > .button { flex-shrink: 0; }
+
+/* Contact keeps the address and useful email topics in plain sight. */
+.contact-address { padding-block: 48px; }
+.contact-address > a { display: inline-flex; align-items: center; gap: 22px; min-height: 44px; color: var(--signal-text); font: 400 50px/1.2 var(--font-display), Georgia, serif; letter-spacing: -.03em; }
+.contact-address > a > svg { width: 24px; height: 24px; }
+.contact-address > a:hover { text-decoration: underline; text-underline-offset: 8px; }
+.contact-address > p { color: var(--muted); font-size: 12px; line-height: 22px; margin-top: 16px; }
+.contact-topics { padding-block: 36px 48px; border-block: 1px solid var(--line); }
+.contact-topics > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 30px; }
+.contact-topics > div > a { display: flex; flex-direction: column; align-items: start; min-width: 0; }
+.contact-topics p { font-size: 14px; line-height: 25px; color: var(--muted); margin-top: 13px; }
+.contact-topics a > span { display: inline-flex; align-items: center; min-height: 44px; gap: 9px; font-size: 12px; color: var(--signal-text); margin-top: 16px; }
+.contact-topics a:hover > span { text-decoration: underline; text-underline-offset: 4px; }
+.contact-notes { display: grid; grid-template-columns: 1.4fr 1fr; gap: 100px; padding-top: 52px; }
+.contact-notes p:not(.editorial-kicker) { font-size: 14px; line-height: 26px; color: var(--muted); margin-top: 18px; }
+.contact-notes .editorial-kicker { margin-bottom: 0; }
+.contact-notes .text-link { margin-top: 18px; }
+
+@media (max-width: 1023px) {
+  .editorial-hero h1 { font-size: 58px; }
+  .about-statement, .about-now, .contact-notes { gap: 48px; }
+  .about-principles li { grid-template-columns: 28px 1fr 1.3fr; gap: 20px; }
+  .guide-index { gap: 18px; }
+  .guide-chapter { grid-template-columns: 100px 1fr; gap: 36px; }
+  .guide-checklist-header { align-items: start; }
+  .contact-topics > div { gap: 26px; }
+}
+@media (max-width: 767px) {
+  .editorial-hero { padding: 46px 0 38px; }
+  .editorial-kicker { font-size: 11px; margin-bottom: 18px; }
+  .editorial-hero h1 { font-size: 45px; line-height: 1.1; }
+  .editorial-description { font-size: 15px; line-height: 26px; margin-top: 22px; }
+  .editorial-content { padding-bottom: 48px; }
+  .editorial-content h2 { font-size: 27px; line-height: 35px; }
+  .editorial-content h3 { font-size: 18px; line-height: 26px; }
+  .editorial-next { flex-direction: column; align-items: start; gap: 24px; margin-top: 42px; padding-top: 28px; }
+  .about-statement, .about-now { grid-template-columns: 1fr; gap: 22px; padding-block: 36px; }
+  .about-statement p, .about-now p { font-size: 15px; line-height: 26px; }
+  .about-principles { padding-block: 36px 6px; }
+  .about-principles ol { margin-top: 26px; }
+  .about-principles li { grid-template-columns: 24px 1fr; gap: 8px 16px; padding-block: 24px; }
+  .about-principles li > p { grid-column: 2; }
+  .about-now { padding-bottom: 0; }
+  .guide-index { grid-template-columns: 1fr 1fr; gap: 10px 20px; padding-block: 20px; }
+  .guide-index a { gap: 8px; font-size: 12px; line-height: 21px; }
+  .guide-chapter { grid-template-columns: 1fr; gap: 16px; padding-block: 36px; }
+  .guide-chapter-number { font-size: 30px; }
+  .guide-chapter-copy > p { font-size: 14px; line-height: 25px; margin-top: 17px; }
+  .guide-chapter-copy ul { font-size: 13px; line-height: 24px; }
+  .guide-checklist { padding: 22px 18px; margin-top: 36px; }
+  .guide-checklist-header { flex-direction: column; gap: 20px; }
+  .guide-checklist-header h2 { font-size: 25px; line-height: 33px; }
+  .guide-checklist-progress { width: 100%; min-width: 0; }
+  .guide-checklist-items { margin-top: 22px; }
+  .guide-checklist-items label { align-items: start; gap: 11px; font-size: 14px; line-height: 24px; }
+  .guide-checklist-items input { margin-top: 3px; }
+  .guide-checklist-actions { flex-direction: column; align-items: start; gap: 14px; margin-top: 22px; }
+  .contact-address { padding-block: 32px; }
+  .contact-address > a { font-size: 30px; gap: 12px; }
+  .contact-address > a > svg { width: 18px; height: 18px; }
+  .contact-topics { padding-block: 30px; }
+  .contact-topics > div { grid-template-columns: 1fr; gap: 26px; margin-top: 24px; }
+  .contact-topics a > span { margin-top: 7px; }
+  .contact-notes { grid-template-columns: 1fr; gap: 28px; padding-top: 36px; }
+}
+@media (max-width: 359px) {
+  .editorial-hero h1 { font-size: 39px; }
+  .contact-address > a { font-size: 26px; gap: 9px; }
+  .guide-index { grid-template-columns: 1fr; gap: 2px; }
+}

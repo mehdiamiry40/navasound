@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Brand from "./_components/brand";
+import SiteFooter from "./_components/site-footer";
 import SiteHeader from "./_components/site-header";
 import { Arrow, HeroArtwork } from "./_components/release-showcase";
 
@@ -13,15 +13,6 @@ const questions = [
   { question: "Do I keep ownership of my music?", answer: "Yes. Applying or preparing a brief does not transfer ownership or create a distribution agreement. The planned standard service does not take ownership of your masters. You must control the rights needed for any future delivery." },
   { question: "Do I need to pay or upload anything?", answer: "No payment is taken now, and the website does not accept audio or artwork. Your application and release brief are prepared on your device. You choose whether to copy, download or manually email the details. Nothing is automatically sent to NavaSound." },
   { question: "Does NavaSound take a royalty commission?", answer: "The target standard launch offer is 0% NavaSound commission on DSP royalties. Provider deductions, payout costs and optional services may apply. These will be disclosed before distribution launches." },
-];
-
-const footerLinks = [
-  ["Trust centre", "/legal"],
-  ["Privacy notice", "/legal/privacy"],
-  ["Website terms", "/legal/terms"],
-  ["Beta guide", "/legal/beta"],
-  ["Refunds", "/legal/refunds"],
-  ["Contact", "mailto:hello@navasound.com"],
 ];
 
 export default function Home() {
@@ -66,6 +57,7 @@ export default function Home() {
               <li><span aria-hidden="true">03</span><h3>Share for review.</h3><p>Manually email your details to NavaSound for a human fit and readiness review.</p></li>
             </ol>
             <p className="handoff-note">The email link opens a message. Add your brief yourself before sending; nothing is sent automatically.</p>
+            <Link className="text-link" href="/guide">Read the release guide <Arrow /></Link>
           </section>
 
           <section className="artist-control-section" id="your-music" aria-labelledby="artist-control-heading">
@@ -87,7 +79,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="site-footer shell"><div className="footer-main"><Link className="brand" href="/" aria-label="NavaSound home"><Brand /></Link><nav aria-label="Footer navigation">{footerLinks.map(([label, href]) => <Link key={label} href={href}>{label}</Link>)}</nav></div><div className="footer-meta"><p>© 2026 NavaSound · MEHDI EMIR · ABN 62 351 619 456</p><span>Queensland, Australia</span></div></footer>
+      <SiteFooter />
     </>
   );
 }
