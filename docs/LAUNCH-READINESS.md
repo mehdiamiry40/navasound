@@ -8,11 +8,11 @@ The implemented service is the Release Readiness beta: artist applications, loca
 
 ## Website checks completed
 
-- Original studio illustration replaces the landscape artwork across the homepage and previews.
+- The homepage uses an original photographic music still life. Sample-release previews have been removed.
 - Required text fields reject whitespace-only input, including before JavaScript starts, while accepting Unicode artist names.
 - Removed tracks can be restored with their complete metadata and original ordering through a local undo stack.
 - Local review/export, keyboard focus, responsive navigation, canonical/social metadata and security headers are covered by automated checks.
-- The current local production build passed 183 browser checks across Chromium, Firefox and WebKit.
+- The latest full quality gate passed 165 browser checks across Chromium, Firefox and WebKit after sample-release tests were retired.
 - The production dependency audit reported no known vulnerabilities on 6 September 2026.
 - CI installs and tests all three browser engines.
 - No personal application or brief values are submitted by the website. Only a whitelisted, non-personal release-format preference can be passed to the workspace URL.
