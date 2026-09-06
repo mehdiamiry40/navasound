@@ -11,9 +11,10 @@ The implemented service is the Release Readiness beta: artist applications, loca
 - The homepage uses an original photographic music still life. Sample-release previews have been removed.
 - About, Release Guide and Contact pages share the site's navigation and layout. The guide includes a temporary local checklist; email links require the visitor to compose and send their own message.
 - Required text fields reject whitespace-only input, including before JavaScript starts, while accepting Unicode artist names.
-- Removed tracks can be restored with their complete metadata and original ordering through a local undo stack.
+- Editable release drafts can be saved before completion and reopened from a validated local JSON file, with confirmation before replacing current work. Declarations are never saved in draft files and must be reviewed again after opening.
+- Removed tracks can be restored with their complete metadata and original ordering through a local undo stack or selected individually. The 100-track draft limit remains enforced.
 - Local review/export, keyboard focus, responsive navigation, canonical/social metadata and security headers are covered by automated checks.
-- The current suite covers 219 browser checks across Chromium, Firefox and WebKit, including the new public pages, navigation, sitemap and checklist behavior.
+- The current suite covers 234 browser checks across Chromium, Firefox and WebKit, including public pages, navigation, the local checklist and editable release drafts.
 - The production dependency audit reported no known vulnerabilities on 6 September 2026.
 - CI installs and tests all three browser engines.
 - No personal application or brief values are submitted by the website. Only a whitelisted, non-personal release-format preference can be passed to the workspace URL.

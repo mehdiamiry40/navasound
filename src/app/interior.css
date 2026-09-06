@@ -209,7 +209,7 @@ ol.beta-clarity-list { list-style: decimal; }
 .release-boundary { align-items: center; display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 0 auto; max-width: 1104px; padding: 0 0 40px; width: calc(100% - 48px); }
 .release-boundary span { align-items: center; color: var(--muted); display: inline-flex; font-size: 11px; font-weight: 500; gap: 8px; letter-spacing: .03em; line-height: 1.7; }
 .release-boundary span::before { background: var(--signal); content: ""; height: 4px; width: 4px; }
-.release-form { display: grid; gap: 36px; margin: 0 auto; max-width: 912px; padding: 16px 0 88px; width: calc(100% - 48px); }
+.release-form { display: grid; gap: 36px; margin: 0 auto; max-width: 1104px; padding: 16px 0 88px; width: calc(100% - 48px); }
 .release-form-section { background: var(--white); border: 1px solid var(--line); min-width: 0; padding: 32px; }
 .release-section-heading { align-items: center; border-bottom: 1px solid var(--soft-line); display: flex; gap: 16px; margin-bottom: 30px; padding-bottom: 26px; }
 .release-section-heading > span { align-items: center; color: var(--signal-text); display: flex; flex: 0 0 38px; font-family: var(--font-geist-mono), monospace; font-size: 12px; height: 38px; justify-content: center; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
@@ -457,3 +457,45 @@ ol.beta-clarity-list { list-style: decimal; }
 
 .local-save-note { color: var(--muted); font-size: 12px; line-height: 1.65; margin: 0 0 24px; }
 .form-heading .local-save-note { font-size: 12px; margin: 10px 0 0; }
+
+/* Editable draft files stay local and are confirmed before replacing work. */
+.release-form .draft-tools { padding: 24px; margin-bottom: 0; border: 1px solid var(--line); background: var(--white); }
+.draft-tools h2 { font: 450 25px/1.3 var(--font-geist-sans), sans-serif; letter-spacing: -.03em; }
+.draft-tools > div > p { color: var(--muted); font-size: 14px; line-height: 24px; margin-top: 10px; }
+.draft-actions { display: flex; align-items: end; flex-wrap: wrap; gap: 20px 28px; margin-top: 22px; }
+.release-form .draft-file-label { max-width: 380px; width: 100%; gap: 7px; }
+.release-form .draft-file-label > span { font-size: 12px; color: var(--muted); }
+.release-form .draft-file-label input { width: 100%; min-width: 0; font-size: 12px; padding: 5px; min-height: 44px; background: var(--paper); border: 1px solid var(--line); }
+.release-form .draft-file-label input::file-selector-button { font: inherit; min-height: 32px; padding: 6px 12px; margin-right: 10px; background: var(--white); color: var(--ink); border: 1px solid var(--line); border-radius: 5px; cursor: pointer; }
+.draft-tools > p { font-size: 12px; line-height: 21px; color: var(--muted); margin-top: 16px; max-width: 760px; }
+.draft-tools > .draft-status { color: var(--signal-text); overflow-wrap: anywhere; }
+.draft-status:empty { margin-top: 0; }
+.draft-tools .button, .draft-dialog-actions .button { min-height: 44px; font: 500 13px/20px var(--font-geist-sans), sans-serif; text-transform: none; padding: 11px 16px; border-radius: 6px; }
+.draft-tools .button::after, .draft-dialog-actions .button::after { display: none; }
+.draft-import-dialog { width: min(640px, calc(100% - 40px)); max-height: calc(100svh - 40px); overflow: auto; overscroll-behavior: contain; margin: auto; padding: 28px; border: 1px solid var(--line); border-radius: 10px; background: var(--white); color: var(--ink); box-shadow: 0 20px 80px #173e3429; }
+.draft-import-dialog::backdrop { background: #182e2a80; }
+.draft-import-dialog > h2 { font-size: 28px; line-height: 36px; letter-spacing: -.03em; }
+.draft-import-dialog > p { font-size: 14px; line-height: 24px; color: var(--muted); margin-top: 18px; }
+.draft-summary { margin: 24px 0; }
+.draft-summary > div { display: grid; grid-template-columns: 80px 1fr; gap: 18px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.draft-summary dt { font-size: 12px; line-height: 23px; color: var(--muted); }
+.draft-summary dd { margin: 0; font-size: 14px; line-height: 23px; overflow-wrap: anywhere; }
+.draft-import-dialog > .draft-import-note, .draft-import-dialog > .draft-backup-status { font-size: 12px; line-height: 21px; }
+.draft-backup-status:empty { margin-top: 0; }
+.draft-dialog-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.draft-dialog-actions > button:first-child { margin-right: auto; }
+.track-limit-note { color: var(--muted); font-size: 12px; line-height: 21px; margin-top: 12px; }
+@media (max-width: 600px) {
+  .release-form .draft-tools { padding: 20px 16px; margin-bottom: 0; }
+  .draft-tools h2 { font-size: 23px; }
+  .draft-actions { align-items: stretch; flex-direction: column; gap: 18px; }
+  .release-form .draft-file-label { max-width: none; }
+  .draft-import-dialog { width: calc(100% - 24px); max-height: calc(100svh - 24px); padding: 22px 18px; }
+  .draft-import-dialog > h2 { font-size: 26px; }
+  .draft-summary > div { grid-template-columns: 65px 1fr; gap: 14px; }
+  .draft-dialog-actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .draft-dialog-actions > button:first-child { grid-column: 1 / -1; margin: 0; }
+  .draft-dialog-actions .button { white-space: normal; padding-inline: 10px; }
+}
+.release-form .track-undo .restore-track-choice { flex: 1 1 100%; max-width: 440px; gap: 7px; }
+.release-form .restore-track-choice > span { font-size: 12px; color: var(--muted); }

@@ -103,6 +103,12 @@ export default function ReleaseGuidePage() {
               answers are not saved automatically.
             </p>
             <p>
+              Still working on the details? Use Save editable draft in the workspace,
+              then Open saved draft when you return. The file is read locally and
+              keeps your track order and credits. Review the declarations again
+              before exporting the finished brief.
+            </p>
+            <p>
               To request human review, manually email your details to NavaSound.
               Opening an email link does not send the brief. Add the text yourself
               and leave out masters, artwork and payment details.

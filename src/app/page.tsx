@@ -5,7 +5,7 @@ import { Arrow, HeroArtwork } from "./_components/release-showcase";
 
 const preparation = [
   { title: "Artist application", copy: "Introduce your music and your plans for the next release.", href: "/apply", action: "Apply for the beta" },
-  { title: "Release workspace", copy: "Bring names, credits and track details together on your device.", href: "/release", action: "Open the workspace" },
+  { title: "Release workspace", copy: "Bring names, credits and track details together on your device. Save an editable draft to return later.", href: "/release", action: "Open the workspace" },
   { title: "Human review", copy: "Share your details for a human fit and readiness review.", href: "/legal/beta", action: "How review works" },
 ];
 const questions = [
