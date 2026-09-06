@@ -1,19 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, MouseEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, MouseEvent, useEffect, useRef, useState } from "react";
+import {
+  createReleaseDraft,
+  MAX_RELEASE_DRAFT_BYTES,
+  MAX_RELEASE_DRAFT_TRACKS,
+  parseReleaseDraft,
+  RELEASE_FIELD_NAMES,
+  releaseDraftFilename,
+  serializeReleaseDraft,
+  type ReleaseDraft,
+  type ReleaseIdentity,
+  type ReleaseType,
+  type TrackMetadata,
+} from "./release-draft";
 
-type ReleaseType = "Single" | "EP" | "Album";
-
-type Track = {
-  id: string;
-  title: string;
-  version: string;
-  artists: string;
-  songwriters: string;
-  explicit: "No" | "Yes" | "Clean version";
-  isrc: string;
-};
+type Track = TrackMetadata & { id: string };
 
 type RemovedTrack = { track: Track; index: number };
 
@@ -98,8 +101,8 @@ function serializeReleaseBrief(formElement: HTMLFormElement, tracks: Track[]) {
   };
 }
 
-function downloadText(text: string, filename: string) {
-  const file = new Blob([text], { type: "text/plain;charset=utf-8" });
+function downloadText(text: string, filename: string, contentType = "text/plain;charset=utf-8") {
+  const file = new Blob([text], { type: contentType });
   const url = URL.createObjectURL(file);
   const anchor = document.createElement("a");
   anchor.href = url;
@@ -149,10 +152,20 @@ export default function ReleaseBriefForm({ initialReleaseType = "Single" }: { in
   const [tracks, setTracks] = useState<Track[]>([emptyTrack("track-1")]);
   const [removedTracks, setRemovedTracks] = useState<RemovedTrack[]>([]);
   const [isHydrated, setIsHydrated] = useState(false);
+  const [draftStatus, setDraftStatus] = useState("");
+  const [draftBackupStatus, setDraftBackupStatus] = useState("");
+  const [isReadingDraft, setIsReadingDraft] = useState(false);
+  const [pendingDraft, setPendingDraft] = useState<{ draft: ReleaseDraft; filename: string } | null>(null);
   const [status, setStatus] = useState(
     "Nothing is uploaded. The brief is created locally on this device.",
   );
   const [briefPreview, setBriefPreview] = useState<ReturnType<typeof serializeReleaseBrief> | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const draftFileInput = useRef<HTMLInputElement>(null);
+  const draftDialog = useRef<HTMLDialogElement>(null);
+  const cancelDraftButton = useRef<HTMLButtonElement>(null);
+  const importCompleted = useRef(false);
+  const importSequence = useRef(0);
   const reviewDialog = useRef<HTMLDialogElement>(null);
   const reviewButton = useRef<HTMLButtonElement>(null);
   const closeReviewButton = useRef<HTMLButtonElement>(null);
@@ -189,7 +202,7 @@ export default function ReleaseBriefForm({ initialReleaseType = "Single" }: { in
   }
 
   function addTrack() {
-    if (!isHydrated) return;
+    if (!isHydrated || tracks.length >= MAX_RELEASE_DRAFT_TRACKS) return;
     const id = crypto.randomUUID();
     pendingTrackFocus.current = { id };
     setTracks((current) => [...current, emptyTrack(id)]);
@@ -207,9 +220,10 @@ export default function ReleaseBriefForm({ initialReleaseType = "Single" }: { in
     setStatus(`Track ${index + 1} removed. ${tracks.length - 1} ${tracks.length === 2 ? "track remains" : "tracks remain"}. Use Undo removal below the track list to restore its details.`);
   }
 
-  function undoRemoval() {
-    if (!isHydrated) return;
-    const removed = removedTracks.at(-1);
+  function undoRemoval(id?: string) {
+    if (!isHydrated || tracks.length >= MAX_RELEASE_DRAFT_TRACKS) return;
+    const removedIndex = id ? removedTracks.findIndex(item => item.track.id === id) : removedTracks.length - 1;
+    const removed = removedTracks[removedIndex];
     if (!removed) return;
     const restoredIndex = Math.min(removed.index, tracks.length);
     pendingTrackFocus.current = { id: removed.track.id };
@@ -218,7 +232,7 @@ export default function ReleaseBriefForm({ initialReleaseType = "Single" }: { in
       removed.track,
       ...current.slice(restoredIndex),
     ]);
-    setRemovedTracks((current) => current.slice(0, -1));
+    setRemovedTracks((current) => current.filter((_, index) => index !== removedIndex));
     setStatus(`“${removed.track.title.trim() || `Track ${removed.index + 1}`}” restored as track ${restoredIndex + 1} of ${tracks.length + 1}, with all its details.`);
   }
 
@@ -275,11 +289,103 @@ export default function ReleaseBriefForm({ initialReleaseType = "Single" }: { in
     }
   }
 
+  function saveEditableDraft() {
+    const form = formRef.current;
+    if (!isHydrated || !form) return;
+    try {
+      const values = new FormData(form);
+      const release = Object.fromEntries(
+        RELEASE_FIELD_NAMES.map(name => [name, String(values.get(name) ?? "")]),
+      ) as ReleaseIdentity;
+      const draft = createReleaseDraft(release, tracks);
+      const filename = releaseDraftFilename(release.releaseTitle);
+      downloadText(serializeReleaseDraft(draft), filename, "application/json;charset=utf-8");
+      setDraftStatus(`“${filename}” downloaded. Reopen this file here to continue editing. Nothing was sent.`);
+      if (draftDialog.current?.open) setDraftBackupStatus("A copy of your current work was downloaded.");
+    } catch {
+      setDraftStatus("The editable draft could not be saved. Check the field lengths and track limit, then try again. Your work is still here.");
+      if (draftDialog.current?.open) setDraftBackupStatus("The current draft could not be saved. Cancel to check your details before replacing them.");
+    }
+  }
+
+  async function selectSavedDraft(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.currentTarget.files?.[0];
+    event.currentTarget.value = "";
+    if (!isHydrated || !file) return;
+    const sequence = ++importSequence.current;
+    const filename = file.name.slice(0, 120);
+    setIsReadingDraft(true);
+    setDraftStatus(`Reading “${filename}”…`);
+    try {
+      if (file.size > MAX_RELEASE_DRAFT_BYTES) {
+        throw new Error("Choose a draft smaller than 1 MB.");
+      }
+      const draft = parseReleaseDraft(await file.text());
+      if (sequence !== importSequence.current || !formRef.current) return;
+      importCompleted.current = false;
+      setDraftBackupStatus("");
+      setPendingDraft({ draft, filename });
+      setDraftStatus(`“${filename}” is ready to open. Confirm before replacing your current details.`);
+      requestAnimationFrame(() => {
+        draftDialog.current?.showModal();
+        cancelDraftButton.current?.focus();
+      });
+    } catch {
+      if (sequence !== importSequence.current || !formRef.current) return;
+      setDraftStatus(`Could not open “${filename}”. Choose a NavaSound editable draft (.json) smaller than 1 MB. Your current work is unchanged.`);
+    } finally {
+      if (sequence === importSequence.current) setIsReadingDraft(false);
+    }
+  }
+
+  function openDraft() {
+    const form = formRef.current;
+    if (!isHydrated || !pendingDraft || !form) return;
+    for (const name of RELEASE_FIELD_NAMES) {
+      const control = form.elements.namedItem(name);
+      if (control instanceof HTMLInputElement || control instanceof HTMLSelectElement || control instanceof HTMLTextAreaElement) {
+        control.value = pendingDraft.draft.release[name];
+      }
+    }
+    for (const name of ["metadataAccurate", "rightsCleared", "noArtificialStreams", "policiesAccepted"]) {
+      const control = form.elements.namedItem(name);
+      if (control instanceof HTMLInputElement) control.checked = false;
+    }
+    pendingTrackFocus.current = null;
+    setTracks(pendingDraft.draft.tracks.map(track => ({ ...track, id: crypto.randomUUID() })));
+    setRemovedTracks([]);
+    setBriefPreview(null);
+    setStatus("Draft reopened locally. Review the declarations again before exporting a release brief. Nothing was sent.");
+    setDraftStatus(`“${pendingDraft.filename}” opened with ${pendingDraft.draft.tracks.length} ${pendingDraft.draft.tracks.length === 1 ? "track" : "tracks"}. Your declarations need a fresh review.`);
+    importCompleted.current = true;
+    draftDialog.current?.close();
+  }
+
+  function finishDraftImport() {
+    setPendingDraft(null);
+    if (importCompleted.current) {
+      const title = formRef.current?.elements.namedItem("releaseTitle");
+      if (title instanceof HTMLInputElement) title.focus();
+    } else {
+      setDraftStatus("Draft opening cancelled. Your current work is unchanged.");
+      draftFileInput.current?.focus();
+    }
+  }
+
   return (
-    <form className="release-form" onSubmit={downloadBrief}>
+    <form ref={formRef} className="release-form" autoComplete="off" onSubmit={downloadBrief}>
+      <section className="draft-tools" aria-labelledby="draft-tools-heading">
+        <div><h2 id="draft-tools-heading">Pick up where you left off.</h2><p>Save an editable draft at any stage, then reopen it here to keep working.</p></div>
+        <div className="draft-actions">
+          <button className="button form-tool-secondary" type="button" onClick={saveEditableDraft} disabled={!isHydrated}>Save editable draft</button>
+          <label className="draft-file-label"><span>Open saved draft</span><input ref={draftFileInput} type="file" accept=".json,application/json" onChange={selectSavedDraft} disabled={!isHydrated || isReadingDraft} aria-describedby="draft-local-note" /></label>
+        </div>
+        <p id="draft-local-note">Draft files contain your entered details and are opened only on this device. No file is uploaded. Use the text release brief below when you’re ready to share.</p>
+        <p className="draft-status" role="status">{draftStatus}</p>
+      </section>
       <section className="release-form-section" id="release-identity">
         <div className="release-section-heading"><span>01</span><h2>Release identity</h2></div>
-        <p className="local-save-note">Your changes are not saved automatically. Download a copy before closing this page.</p>
+        <p className="local-save-note">Your changes are not saved automatically. Save an editable draft before closing this page to continue later.</p>
         <noscript>
           <p className="form-noscript">
             This local tool needs JavaScript, and nothing has been sent. You may contact{" "}
@@ -338,10 +444,13 @@ export default function ReleaseBriefForm({ initialReleaseType = "Single" }: { in
         {removedTracks.length > 0 && (
           <div className="track-undo">
             <p>{removedTracks.length === 1 ? "Removed a track? Its details are still available." : `${removedTracks.length} removed tracks can still be restored, most recent first.`}</p>
-            <button className="button form-tool-secondary" type="button" onClick={undoRemoval} disabled={!isHydrated}>Undo removal <span aria-hidden="true">↶</span></button>
+            <button className="button form-tool-secondary" type="button" onClick={() => undoRemoval()} disabled={!isHydrated || tracks.length >= MAX_RELEASE_DRAFT_TRACKS}>Undo removal <span aria-hidden="true">↶</span></button>
+            {removedTracks.length > 1 && <label className="restore-track-choice"><span>Restore a removed track</span><select value="" onChange={event => undoRemoval(event.target.value)} disabled={!isHydrated || tracks.length >= MAX_RELEASE_DRAFT_TRACKS}><option value="" disabled>Choose a track</option>{removedTracks.map(item => <option key={item.track.id} value={item.track.id}>{item.track.title || "Untitled track"}</option>)}</select></label>}
+            {tracks.length >= MAX_RELEASE_DRAFT_TRACKS && <p className="track-limit-note">Remove a current track to make room, then choose which removal to restore.</p>}
           </div>
         )}
-        <button className="add-track" type="button" onClick={addTrack} disabled={!isHydrated}>+ Add another track</button>
+        <button className="add-track" type="button" onClick={addTrack} disabled={!isHydrated || tracks.length >= MAX_RELEASE_DRAFT_TRACKS}>+ Add another track</button>
+        {tracks.length >= MAX_RELEASE_DRAFT_TRACKS && <p className="track-limit-note">The workspace supports up to {MAX_RELEASE_DRAFT_TRACKS} tracks per draft.</p>}
       </section>
 
       <section className="release-form-section" id="release-rights">
@@ -375,6 +484,14 @@ export default function ReleaseBriefForm({ initialReleaseType = "Single" }: { in
           <a href="mailto:hello@navasound.com?subject=NavaSound%20beta%20release%20brief">Email hello@navasound.com ↗</a>
         </div>
       </div>
+      <dialog ref={draftDialog} className="draft-import-dialog" aria-labelledby="draft-import-title" aria-describedby="draft-import-description" onClose={finishDraftImport}>
+        <h2 id="draft-import-title">Open this draft?</h2>
+        <p id="draft-import-description">This replaces the release details and tracks currently on this page. Save your current work first if you want to keep it.</p>
+        {pendingDraft && <dl className="draft-summary"><div><dt>Release</dt><dd>{pendingDraft.draft.release.releaseTitle || "Untitled release"}</dd></div><div><dt>Artist</dt><dd>{pendingDraft.draft.release.primaryArtist || "Not entered yet"}</dd></div><div><dt>Format</dt><dd>{pendingDraft.draft.release.releaseType} · {pendingDraft.draft.tracks.length} {pendingDraft.draft.tracks.length === 1 ? "track" : "tracks"}</dd></div></dl>}
+        <p className="draft-import-note">Declarations and policy acceptance are not saved in draft files. You’ll review them again before exporting a brief.</p>
+        <p className="draft-backup-status" role="status">{draftBackupStatus}</p>
+        <div className="draft-dialog-actions"><button className="button form-tool-secondary" type="button" disabled={!isHydrated} onClick={saveEditableDraft}>Save current work first</button><button ref={cancelDraftButton} className="button form-tool-secondary" type="button" disabled={!isHydrated} onClick={() => draftDialog.current?.close()}>Cancel</button><button className="button button-primary" type="button" disabled={!isHydrated || !pendingDraft} onClick={openDraft}>Open draft</button></div>
+      </dialog>
       <dialog ref={reviewDialog} className="release-review-dialog" aria-labelledby="release-review-title" aria-describedby="release-review-description" onClose={finishReview}>
         <div className="release-review-header">
           <div><p className="eyebrow">LOCAL PREVIEW</p><h2 id="release-review-title">Review your release brief.</h2></div>

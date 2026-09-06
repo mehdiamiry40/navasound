@@ -26,7 +26,7 @@ export default async function ReleasePage({
         <div>
           <p>
             Bring your artist details, credits and track metadata together.
-            Your answers stay in this browser. Download or copy the brief, then
+            Save an editable draft to continue later. Download or copy the finished brief, then
             manually email it to NavaSound for readiness review. Do not attach
             masters or artwork.
           </p>
@@ -34,7 +34,7 @@ export default async function ReleasePage({
         </div>
       </section>
       <div className="release-boundary">
-        <span>NO UPLOAD</span><span>NO PAYMENT</span><span>NO SERVER STORAGE</span><span>LOCAL DOWNLOAD ONLY</span>
+        <span>NO SERVER UPLOAD</span><span>NO PAYMENT</span><span>NO SERVER STORAGE</span><span>LOCAL DRAFT FILES</span>
       </div>
       <ReleaseBriefForm initialReleaseType={initialReleaseType} />
       <footer className="apply-footer release-footer">
