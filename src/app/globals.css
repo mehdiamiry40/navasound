@@ -58,6 +58,7 @@ svg { flex-shrink: 0; }
 .desktop-nav { display: flex; align-items: center; gap: 30px; margin-left: auto; }
 .desktop-nav > a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; line-height: 20px; color: var(--muted); }
 .desktop-nav > a:hover { color: var(--ink); }
+.desktop-nav > a[aria-current="page"], .mobile-menu nav a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; }
 .nav-actions { display: flex; align-items: center; }
 .site-header .button, .home-page .button { font: 500 14px/20px var(--font-geist-sans), sans-serif; text-transform: none; min-height: 44px; border-radius: 6px; padding: 11px 18px; }
 .site-header .button::after, .home-page .button::after { display: none; }
@@ -67,7 +68,7 @@ svg { flex-shrink: 0; }
 .mobile-menu summary span { height: 1.5px; width: 20px; background: var(--ink); transition: transform .15s; }
 .mobile-menu[open] summary span:first-child { transform: translateY(3.75px) rotate(45deg); }
 .mobile-menu[open] summary span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
-.mobile-menu nav { position: absolute; top: 72px; left: 0; right: 0; border-bottom: 1px solid var(--line); background: var(--paper); padding: 8px 24px 18px; }
+.mobile-menu nav { position: absolute; top: 72px; left: 0; right: 0; max-height: calc(100svh - 72px); overflow-y: auto; overscroll-behavior: contain; border-bottom: 1px solid var(--line); background: var(--paper); padding: 8px 24px 18px; }
 .mobile-menu nav a { display: flex; align-items: center; min-height: 48px; font-size: 15px; padding-inline: 8px; }
 .mobile-menu nav a:hover { color: var(--signal-text); }
 
@@ -164,7 +165,7 @@ svg { flex-shrink: 0; }
   .brand > span { font-size: 14px; letter-spacing: .8px; }
   .brand > svg { width: 23px; height: 23px; }
   .site-header .button { padding: 10px 15px; font-size: 13px; }
-  .mobile-menu nav { top: 64px; padding-inline: 16px; }
+  .mobile-menu nav { top: 64px; max-height: calc(100svh - 64px); padding-inline: 16px; }
   .centered-hero { padding: 44px 0 40px; }
   .beta-status { font-size: 11px; margin-bottom: 22px; }
   .centered-hero h1 { font-size: 52px; line-height: 1.06; }

@@ -4,6 +4,9 @@ const pages = [
   ["/", "NavaSound — Release preparation for independent artists"],
   ["/apply", "Apply for the Release Readiness beta | NavaSound"],
   ["/release", "Release readiness workspace | NavaSound"],
+  ["/about", "About NavaSound | NavaSound"],
+  ["/guide", "Release guide | NavaSound"],
+  ["/contact", "Contact | NavaSound"],
   ["/legal", "Legal and trust centre | NavaSound"],
   ["/legal/privacy", "Privacy Notice | NavaSound"],
   ["/legal/terms", "Website Terms | NavaSound"],
@@ -109,6 +112,9 @@ test("crawl routes and branded 404 are available", async ({ page, request }) => 
   const sitemapText = await sitemap.text();
   expect(sitemapText).toContain("https://navasound.com/apply");
   expect(sitemapText).toContain("https://navasound.com/legal/privacy");
+  for (const route of ["/about", "/guide", "/contact"]) {
+    expect(sitemapText).toContain(`<loc>https://navasound.com${route}</loc>`);
+  }
 
   const notFound = await page.goto("/missing-page");
   expect(notFound?.status()).toBe(404);

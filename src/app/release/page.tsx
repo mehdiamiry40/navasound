@@ -30,7 +30,7 @@ export default async function ReleasePage({
             manually email it to NavaSound for readiness review. Do not attach
             masters or artwork.
           </p>
-          <Link className="text-link" href="/legal/beta">Read beta submission terms ↗</Link>
+          <div className="release-help-links"><Link className="text-link" href="/guide">Read the release guide ↗</Link><Link className="text-link" href="/legal/beta">Read beta submission terms ↗</Link></div>
         </div>
       </section>
       <div className="release-boundary">
@@ -40,6 +40,7 @@ export default async function ReleasePage({
       <footer className="apply-footer release-footer">
         <p>Need help preparing metadata?</p>
         <a href="mailto:hello@navasound.com">hello@navasound.com</a>
+        <Link href="/contact">Contact</Link>
         <Link href="/legal">Legal &amp; trust centre</Link>
       </footer>
     </main>
