@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  --site-width: 1152px;
+  --site-gutter: 24px;
   --paper: #fafaf9;
   --white: #fff;
   --ink: #292524;
@@ -29,8 +31,9 @@ h1 em { font-weight: 400; }
 svg { flex-shrink: 0; }
 ::selection { background: #c6e7de; color: var(--ink); }
 :focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
-.shell { width: 100%; max-width: 1152px; margin-inline: auto; padding-inline: 24px; }
+.shell { width: 100%; max-width: var(--site-width); margin-inline: auto; padding-inline: var(--site-gutter); }
 .home-stack { display: flex; flex-direction: column; }
+.home-stack > * { width: 100%; max-width: none; min-width: 0; }
 .diagonal-arrow { transform: rotate(-45deg); }
 .section-kicker, .eyebrow { font-family: var(--font-geist-mono), monospace; font-weight: 500; font-size: 14px; line-height: 1.2; text-transform: uppercase; }
 .eyebrow { display: flex; align-items: center; gap: 8px; color: var(--signal-text); }
@@ -48,7 +51,7 @@ svg { flex-shrink: 0; }
 
 /* Navigation and controls share a restrained, readable treatment. */
 .site-header { position: sticky; top: 0; z-index: 50; height: 72px; background: var(--paper); }
-.header-inner { max-width: 1152px; height: 72px; padding-inline: 24px; margin: 0 auto; display: flex; align-items: center; gap: 32px; }
+.header-inner { max-width: var(--site-width); height: 72px; padding-inline: var(--site-gutter); margin: 0 auto; display: flex; align-items: center; gap: 32px; }
 .brand { display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; }
 .brand > svg { color: var(--signal-text); }
 .brand > span { font-size: 15px; line-height: 24px; font-weight: 550; letter-spacing: 1px; }
@@ -89,6 +92,23 @@ svg { flex-shrink: 0; }
 .preparation-options .text-link { margin-top: 12px; }
 .beta-note { color: var(--muted); font-size: 12px; line-height: 21px; margin-top: 28px; }
 
+.brief-contents-section, .handoff-section, .artist-control-section { padding-top: 60px; margin-bottom: 72px; border-top: 1px solid var(--line); }
+.section-intro { display: flex; align-items: baseline; justify-content: space-between; gap: 36px; }
+.section-intro h2, .artist-control-section > h2 { font-size: 32px; line-height: 40px; letter-spacing: -.035em; }
+.section-intro > p { color: var(--muted); font-size: 14px; line-height: 24px; }
+.brief-contents { margin: 32px 0 12px; }
+.brief-contents > div { display: grid; grid-template-columns: 1fr 2fr; gap: 36px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.brief-contents dt { font-size: 17px; line-height: 26px; font-weight: 500; letter-spacing: -.015em; }
+.brief-contents dd { margin: 0; color: var(--muted); font-size: 14px; line-height: 26px; }
+.handoff-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px; padding: 0; margin: 36px 0 0; list-style: none; }
+.handoff-steps li > span { display: block; color: var(--signal-text); font-size: 11px; line-height: 20px; margin-bottom: 14px; }
+.handoff-steps h3, .artist-control-details h3 { font-size: 18px; line-height: 26px; font-weight: 500; letter-spacing: -.02em; }
+.handoff-steps p, .artist-control-details p { color: var(--muted); font-size: 14px; line-height: 24px; margin-top: 10px; }
+.handoff-note { color: var(--muted); font-size: 12px; line-height: 21px; margin-top: 28px; }
+.artist-control-section { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
+.artist-control-details > div + div { margin-top: 24px; }
+.artist-control-details .text-link { margin-top: 14px; }
+
 .pricing-section { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; padding-top: 64px; border-top: 1px solid var(--line); }
 .pricing-heading .section-kicker { color: var(--muted); font: 500 10px/18px var(--font-geist-sans), sans-serif; letter-spacing: .08em; margin-bottom: 18px; }
 .pricing-heading h2 { font-size: 34px; line-height: 41px; letter-spacing: -.035em; }
@@ -106,7 +126,7 @@ svg { flex-shrink: 0; }
 .distribution-note span { display: block; color: var(--muted); font-size: 11px; line-height: 20px; margin-top: 4px; }
 .distribution-note p { color: var(--muted); font-size: 11px; line-height: 20px; }
 
-.questions-section { max-width: 780px; width: 100%; margin: 90px auto 84px; }
+.questions-section { margin: 90px 0 84px; }
 .questions-section > h2 { font-size: 30px; line-height: 39px; letter-spacing: -.03em; margin-bottom: 28px; }
 .faq-list { border-top: 1px solid var(--line); }
 .faq-list details { border-bottom: 1px solid var(--line); }
@@ -114,7 +134,7 @@ svg { flex-shrink: 0; }
 .faq-list summary::-webkit-details-marker { display: none; }
 .faq-list summary > span { font-size: 21px; color: var(--muted); flex-shrink: 0; }
 .faq-list details[open] summary > span { transform: rotate(45deg); }
-.faq-list details > p { font-size: 14px; line-height: 25px; color: var(--muted); padding: 0 40px 22px 0; }
+.faq-list details > p { max-width: 78ch; font-size: 14px; line-height: 25px; color: var(--muted); padding: 0 40px 22px 0; }
 .question-contact { font-size: 13px; line-height: 23px; color: var(--muted); margin-top: 22px; }
 .question-contact a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: var(--signal-text); margin-left: 5px; }
 .question-contact a:hover { text-decoration: underline; text-underline-offset: 4px; }
@@ -132,12 +152,13 @@ svg { flex-shrink: 0; }
   .mobile-menu { display: block; }
   .header-inner { gap: 18px; }
   .preparation-options { gap: 32px; }
-  .pricing-section { gap: 48px; }
+  .handoff-steps { gap: 32px; }
+  .pricing-section, .artist-control-section { gap: 48px; }
   .footer-main { align-items: start; flex-direction: column; gap: 12px; }
 }
 @media (max-width: 767px) {
+  :root { --site-gutter: 20px; }
   html { scroll-padding-top: 80px; }
-  .shell, .header-inner { padding-inline: 20px; }
   .site-header, .header-inner { height: 64px; }
   .header-inner { gap: 16px; }
   .brand > span { font-size: 14px; letter-spacing: .8px; }
@@ -163,13 +184,27 @@ svg { flex-shrink: 0; }
   .preparation-options article > p { margin-top: 6px; max-width: 450px; }
   .preparation-options .text-link { margin-top: 6px; }
   .beta-note { margin-top: 26px; font-size: 11px; line-height: 20px; }
+  .brief-contents-section, .handoff-section, .artist-control-section { padding-top: 42px; margin-bottom: 48px; }
+  .section-intro { align-items: start; flex-direction: column; gap: 14px; }
+  .section-intro h2, .artist-control-section > h2 { font-size: 28px; line-height: 35px; }
+  .brief-contents { margin-top: 26px; }
+  .brief-contents > div { grid-template-columns: 1fr; gap: 7px; padding-block: 19px; }
+  .brief-contents dt { font-size: 17px; }
+  .brief-contents dd { line-height: 24px; }
+  .handoff-steps { grid-template-columns: 1fr; gap: 25px; margin-top: 28px; }
+  .handoff-steps li { display: grid; grid-template-columns: 24px 1fr; column-gap: 16px; }
+  .handoff-steps li > span { padding-top: 3px; margin: 0; }
+  .handoff-steps p { grid-column: 2; margin-top: 6px; }
+  .handoff-note { font-size: 11px; line-height: 20px; margin-top: 26px; }
+  .artist-control-section { grid-template-columns: 1fr; gap: 26px; }
+  .artist-control-details p { margin-top: 6px; }
   .pricing-section { grid-template-columns: 1fr; gap: 28px; padding-top: 42px; }
   .pricing-heading .section-kicker { margin-bottom: 14px; }
   .pricing-heading h2 { font-size: 30px; line-height: 37px; }
   .pricing-heading > p:last-child { margin-top: 16px; }
   .compact-prices dd { font-size: 36px; }
   .distribution-note { grid-template-columns: 1fr; gap: 12px; margin-top: 16px; padding-top: 14px; }
-  .questions-section { margin: 56px auto 48px; }
+  .questions-section { margin: 56px 0 48px; }
   .questions-section > h2 { font-size: 27px; line-height: 35px; margin-bottom: 22px; }
   .faq-list summary { font-size: 14px; line-height: 24px; gap: 20px; padding-block: 17px; }
   .faq-list details > p { padding-right: 10px; font-size: 13px; line-height: 24px; }
@@ -181,8 +216,8 @@ svg { flex-shrink: 0; }
   .footer-meta { flex-direction: column; gap: 5px; margin-top: 16px; font-size: 10px; }
 }
 @media (max-width: 359px) {
+  :root { --site-gutter: 16px; }
   .header-inner { gap: 10px; }
-  .shell, .header-inner { padding-inline: 16px; }
   .brand { gap: 7px; }
   .brand > span { font-size: 13px; }
   .site-header .button { padding-inline: 12px; }

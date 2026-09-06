@@ -48,6 +48,35 @@ export default function Home() {
             <p className="beta-note">Your details are shared manually by email. No payment or audio uploads are required.</p>
           </section>
 
+          <section className="brief-contents-section" id="brief-contents" aria-labelledby="brief-contents-heading">
+            <div className="section-intro"><h2 id="brief-contents-heading">Everything your brief needs.</h2><p>One place for the details behind a single, EP or album.</p></div>
+            <dl className="brief-contents">
+              <div><dt>Release details</dt><dd>Artist name, release title, format, genre and your target date.</dd></div>
+              <div><dt>Track credits</dt><dd>Track titles, featured artists and songwriters, organised in release order.</dd></div>
+              <div><dt>Readiness notes</dt><dd>Rights confirmations and details that need a closer look.</dd></div>
+            </dl>
+            <Link className="text-link" href="/release#release-identity">Explore the workspace <Arrow /></Link>
+          </section>
+
+          <section className="handoff-section" id="review-process" aria-labelledby="handoff-heading">
+            <div className="section-intro"><h2 id="handoff-heading">A simple handoff.</h2><p>Prepare at your pace. Share when you’re ready.</p></div>
+            <ol className="handoff-steps" role="list">
+              <li><span aria-hidden="true">01</span><h3>Prepare your details.</h3><p>Bring your release information and credits together in the workspace.</p></li>
+              <li><span aria-hidden="true">02</span><h3>Check and keep.</h3><p>Review your brief, then download or copy the text before closing the page.</p></li>
+              <li><span aria-hidden="true">03</span><h3>Share for review.</h3><p>Manually email your details to NavaSound for a human fit and readiness review.</p></li>
+            </ol>
+            <p className="handoff-note">The email link opens a message. Add your brief yourself before sending; nothing is sent automatically.</p>
+          </section>
+
+          <section className="artist-control-section" id="your-music" aria-labelledby="artist-control-heading">
+            <h2 id="artist-control-heading">Your music.<br />Your decision.</h2>
+            <div className="artist-control-details">
+              <div><h3>You choose what to share.</h3><p>Your form answers stay on your device until you choose to email them. They aren’t saved automatically, so keep a downloaded copy.</p></div>
+              <div><h3>Ownership stays with you.</h3><p>Preparing a brief does not transfer ownership of your music or create a distribution agreement.</p></div>
+              <Link className="text-link" href="/legal/privacy">How your information is handled <Arrow /></Link>
+            </div>
+          </section>
+
           <section className="pricing-section" id="pricing" aria-labelledby="pricing-heading">
             <div className="pricing-heading"><p className="section-kicker">TARGET LAUNCH PRICING</p><h2 id="pricing-heading">Planned pricing.<br />Per release.</h2><p>Target pricing for future distribution, in Australian dollars. No payment is taken now.</p></div>
             <div className="price-ledger"><dl className="compact-prices"><div><dt>Single</dt><dd>A$10<span> target</span></dd></div><div><dt>EP / Album</dt><dd>A$20<span> target</span></dd></div></dl><p className="pricing-qualification">Final inclusions, applicable tax and provider costs will be confirmed before payment opens.</p><Link className="text-link" href="/legal/refunds">Pricing and refund details <Arrow /></Link></div>
