@@ -117,7 +117,9 @@ async function expectNoDeclarations(page: Page) {
 }
 
 async function selectDraft(page: Page, draft: unknown, name = "synthetic-release-draft.json") {
-  await page.getByLabel("Open saved draft", { exact: true }).setInputFiles({
+  const fileInput = page.getByLabel("Open saved draft", { exact: true });
+  await expect(fileInput).toBeEnabled();
+  await fileInput.setInputFiles({
     name,
     mimeType: "application/json",
     buffer: Buffer.from(typeof draft === "string" ? draft : JSON.stringify(draft)),
