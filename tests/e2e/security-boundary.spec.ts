@@ -1,17 +1,147 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 const CSP_DIRECTIVE = "form-action 'none'";
+
+const PAGES = [
+  "/",
+  "/apply",
+  "/release",
+  "/about",
+  "/guide",
+  "/contact",
+  "/legal",
+  "/legal/privacy",
+  "/legal/terms",
+  "/legal/beta",
+  "/legal/refunds",
+] as const;
+
+function policyDirectives(policy: string) {
+  return new Map(
+    policy
+      .split(";")
+      .map((directive) => directive.trim())
+      .filter(Boolean)
+      .map((directive) => {
+        const [name, ...sources] = directive.split(/\s+/);
+        return [name, sources.join(" ")];
+      }),
+  );
+}
+
+function expectProductionPolicy(policy: string, upgradeInsecureRequests: boolean) {
+  const directives = policyDirectives(policy);
+  expect(directives.get("default-src")).toBe("'self'");
+  expect(directives.get("script-src")).toMatch(
+    /^'self' 'nonce-[A-Za-z0-9+/_-]+={0,2}' 'strict-dynamic'$/,
+  );
+  expect(directives.get("script-src")).not.toContain("unsafe-inline");
+  expect(directives.get("script-src")).not.toContain("unsafe-eval");
+  expect(directives.get("script-src-attr")).toBe("'none'");
+  expect(directives.get("style-src")).toMatch(/^'self' 'nonce-[A-Za-z0-9+/_-]+={0,2}'$/);
+  expect(directives.get("style-src-attr")).toBe("'unsafe-inline'");
+  expect(directives.get("img-src")).toBe("'self'");
+  expect(directives.get("font-src")).toBe("'self'");
+  expect(directives.get("connect-src")).toBe("'self'");
+  expect(directives.get("media-src")).toBe("'self'");
+  expect(directives.get("object-src")).toBe("'none'");
+  expect(directives.get("base-uri")).toBe("'self'");
+  expect(directives.get("form-action")).toBe("'none'");
+  expect(directives.get("frame-src")).toBe("'none'");
+  expect(directives.get("frame-ancestors")).toBe("'none'");
+  expect(directives.get("worker-src")).toBe("'none'");
+  expect(policy.includes("upgrade-insecure-requests")).toBe(upgradeInsecureRequests);
+  expect(policy).not.toContain("*");
+}
+
+async function collectCspViolations(page: Page) {
+  const violations: Array<{ directive: string; blockedURI: string; sample: string }> = [];
+  await page.exposeBinding(
+    "__reportCspViolation",
+    (_source, violation: { directive: string; blockedURI: string; sample: string }) => {
+      violations.push(violation);
+    },
+  );
+  await page.addInitScript(() => {
+    document.addEventListener("securitypolicyviolation", (event) => {
+      void (
+        window as Window & {
+          __reportCspViolation?: (violation: {
+            directive: string;
+            blockedURI: string;
+            sample: string;
+          }) => void;
+        }
+      ).__reportCspViolation?.({
+        directive: event.effectiveDirective,
+        blockedURI: event.blockedURI,
+        sample: event.sample,
+      });
+    });
+  });
+  return violations;
+}
 
 test("security headers cover entry and form routes", async ({ page }) => {
   for (const route of ["/", "/apply", "/release"]) {
     const response = await page.goto(route);
-    expect(response?.headers()["content-security-policy"]).toContain(CSP_DIRECTIVE);
+    const policy = response?.headers()["content-security-policy"] ?? "";
+    expect(policy).toContain(CSP_DIRECTIVE);
+    expectProductionPolicy(policy, false);
+    const scriptNonce = policy.match(/'nonce-([^']+)'/)?.[1];
+    const appliedNonce = await page.locator("script").evaluateAll((scripts) =>
+      scripts
+        .map((script) => (script instanceof HTMLScriptElement ? script.nonce : ""))
+        .find(Boolean),
+    );
+    expect(appliedNonce).toBe(scriptNonce);
     expect(response?.headers()["x-content-type-options"]).toBe("nosniff");
     expect(response?.headers()["x-frame-options"]).toBe("DENY");
     expect(response?.headers()["referrer-policy"]).toBe(
       "strict-origin-when-cross-origin",
     );
   }
+});
+
+test("https responses upgrade insecure requests", async ({ request }) => {
+  const response = await request.get("/", {
+    headers: { "x-forwarded-proto": "https" },
+  });
+  expectProductionPolicy(response.headers()["content-security-policy"] ?? "", true);
+});
+
+test("public pages, forms, and the hero image load without CSP violations", async ({
+  page,
+}) => {
+  const consoleErrors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleErrors.push(message.text());
+  });
+  const violations = await collectCspViolations(page);
+
+  for (const route of PAGES) {
+    await page.goto(route);
+    await expect(page.locator("main")).toBeVisible();
+  }
+
+  await page.goto("/");
+  const hero = page.locator("img.studio-image");
+  await expect(hero).toBeVisible();
+  await expect
+    .poll(() => hero.evaluate((image: HTMLImageElement) => image.naturalWidth))
+    .toBeGreaterThan(0);
+  await page.getByRole("link", { name: "Apply for the beta" }).first().click();
+  await expect(page).toHaveURL(/\/apply$/);
+  await expect(page.locator("form")).toBeVisible();
+
+  await page.goto("/guide");
+  await page.getByRole("checkbox", { name: "Artist name, release title and track titles checked." }).check();
+  await expect(page.getByRole("status")).toContainText("1 of 5 checked");
+
+  expect(violations).toEqual([]);
+  expect(consoleErrors.filter((message) => /content security policy/i.test(message))).toEqual(
+    [],
+  );
 });
 
 test("legacy form.submit cannot cross the local-only boundary", async ({ page, browserName }) => {
@@ -93,7 +223,7 @@ test("JavaScript-disabled forms stay inert and explain the fallback", async ({
     for (const route of ["/apply", "/release"]) {
       const page = await context.newPage();
       const response = await page.goto(route);
-      expect(response?.headers()["content-security-policy"]).toContain(CSP_DIRECTIVE);
+      expectProductionPolicy(response?.headers()["content-security-policy"] ?? "", false);
       await expect(page.locator(".form-noscript")).toBeVisible();
       for (const button of await page.locator("form button").all()) {
         await expect(button).toBeDisabled();
