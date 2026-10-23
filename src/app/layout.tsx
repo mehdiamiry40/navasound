@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import { connection } from "next/server";
 import { createPageMetadata, SITE_URL } from "./_lib/metadata";
 import "./globals.css";
 import "./interior.css";
@@ -18,7 +19,10 @@ export const metadata: Metadata = {
   }),
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  // Nonces are unique per response, so the document cannot be statically cached.
+  await connection();
+
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable}`}>
       <body>

@@ -1,10 +1,8 @@
 import type { NextConfig } from "next";
 
+// The CSP is generated per request in src/proxy.ts. A second static policy
+// here would be enforced as well, and it cannot carry the request nonce.
 const securityHeaders = [
-  {
-    key: "Content-Security-Policy",
-    value: "form-action 'none'",
-  },
   {
     key: "X-Content-Type-Options",
     value: "nosniff",
