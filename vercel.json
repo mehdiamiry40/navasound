@@ -1,0 +1,3 @@
+{
+  "buildCommand": "rm -rf .next/cache && VERCEL_PREVIEW_FEEDBACK_ENABLED=0 next build && ./node_modules/.bin/tsx scripts/csp-hashes.ts"
+}

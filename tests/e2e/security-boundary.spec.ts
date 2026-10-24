@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { requiredScriptHashes, uncoveredInlineScripts } from "../../src/lib/csp-inline";
 
 const CSP_DIRECTIVE = "form-action 'none'";
 
@@ -29,16 +30,19 @@ function policyDirectives(policy: string) {
   );
 }
 
-function expectProductionPolicy(policy: string, upgradeInsecureRequests: boolean) {
+function expectProductionPolicy(policy: string) {
   const directives = policyDirectives(policy);
   expect(directives.get("default-src")).toBe("'self'");
-  expect(directives.get("script-src")).toMatch(
-    /^'self' 'nonce-[A-Za-z0-9+/_-]+={0,2}' 'strict-dynamic'$/,
-  );
+  expect(directives.get("script-src")).toMatch(/^'self'( 'sha256-[A-Za-z0-9+/]+=*')+$/);
+  expect(directives.get("script-src")).not.toContain("nonce-");
   expect(directives.get("script-src")).not.toContain("unsafe-inline");
   expect(directives.get("script-src")).not.toContain("unsafe-eval");
+  expect(directives.get("script-src")).not.toContain("strict-dynamic");
+  expect(policy).not.toContain("vercel.live");
+  expect(policy).not.toContain("__CSP_INLINE_HASHES__");
   expect(directives.get("script-src-attr")).toBe("'none'");
-  expect(directives.get("style-src")).toMatch(/^'self' 'nonce-[A-Za-z0-9+/_-]+={0,2}'$/);
+  expect(directives.get("style-src")).toMatch(/^'self'( 'sha256-[A-Za-z0-9+/]+=*')*$/);
+  expect(directives.get("style-src")).not.toContain("unsafe-inline");
   expect(directives.get("style-src-attr")).toBe("'unsafe-inline'");
   expect(directives.get("img-src")).toBe("'self'");
   expect(directives.get("font-src")).toBe("'self'");
@@ -50,8 +54,12 @@ function expectProductionPolicy(policy: string, upgradeInsecureRequests: boolean
   expect(directives.get("frame-src")).toBe("'none'");
   expect(directives.get("frame-ancestors")).toBe("'none'");
   expect(directives.get("worker-src")).toBe("'none'");
-  expect(policy.includes("upgrade-insecure-requests")).toBe(upgradeInsecureRequests);
   expect(policy).not.toContain("*");
+}
+
+function expectInlineScriptsHashed(html: string, policy: string) {
+  expect(requiredScriptHashes(html).length).toBeGreaterThan(0);
+  expect(uncoveredInlineScripts(html, policy)).toEqual([]);
 }
 
 async function collectCspViolations(page: Page) {
@@ -87,14 +95,8 @@ test("security headers cover entry and form routes", async ({ page }) => {
     const response = await page.goto(route);
     const policy = response?.headers()["content-security-policy"] ?? "";
     expect(policy).toContain(CSP_DIRECTIVE);
-    expectProductionPolicy(policy, false);
-    const scriptNonce = policy.match(/'nonce-([^']+)'/)?.[1];
-    const appliedNonce = await page.locator("script").evaluateAll((scripts) =>
-      scripts
-        .map((script) => (script instanceof HTMLScriptElement ? script.nonce : ""))
-        .find(Boolean),
-    );
-    expect(appliedNonce).toBe(scriptNonce);
+    expectProductionPolicy(policy);
+    expectInlineScriptsHashed((await response?.text()) ?? "", policy);
     expect(response?.headers()["x-content-type-options"]).toBe("nosniff");
     expect(response?.headers()["x-frame-options"]).toBe("DENY");
     expect(response?.headers()["referrer-policy"]).toBe(
@@ -103,11 +105,17 @@ test("security headers cover entry and form routes", async ({ page }) => {
   }
 });
 
-test("https responses upgrade insecure requests", async ({ request }) => {
-  const response = await request.get("/", {
+test("the hashed policy does not vary by forwarded protocol", async ({ request }) => {
+  const forwarded = await request.get("/", {
     headers: { "x-forwarded-proto": "https" },
   });
-  expectProductionPolicy(response.headers()["content-security-policy"] ?? "", true);
+  const plain = await request.get("/");
+  const forwardedPolicy = forwarded.headers()["content-security-policy"] ?? "";
+  const plainPolicy = plain.headers()["content-security-policy"] ?? "";
+  expectProductionPolicy(plainPolicy);
+  expect(forwardedPolicy).toBe(plainPolicy);
+  expect(plainPolicy).not.toContain("upgrade-insecure-requests");
+  expect(plainPolicy).not.toContain("nonce-");
 });
 
 test("public pages, forms, and the hero image load without CSP violations", async ({
@@ -223,7 +231,7 @@ test("JavaScript-disabled forms stay inert and explain the fallback", async ({
     for (const route of ["/apply", "/release"]) {
       const page = await context.newPage();
       const response = await page.goto(route);
-      expectProductionPolicy(response?.headers()["content-security-policy"] ?? "", false);
+      expectProductionPolicy(response?.headers()["content-security-policy"] ?? "");
       await expect(page.locator(".form-noscript")).toBeVisible();
       for (const button of await page.locator("form button").all()) {
         await expect(button).toBeDisabled();

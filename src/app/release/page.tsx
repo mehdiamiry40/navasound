@@ -9,14 +9,7 @@ export const metadata = createPageMetadata({
   path: "/release",
 });
 
-export default async function ReleasePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
-  const format = (await searchParams).format;
-  const initialReleaseType = format === "EP" || format === "Album" ? format : "Single";
-
+export default function ReleasePage() {
   return (
     <main id="main-content" className="release-page">
       <InnerHeader />
@@ -36,7 +29,7 @@ export default async function ReleasePage({
       <div className="release-boundary">
         <span>NO SERVER UPLOAD</span><span>NO PAYMENT</span><span>NO SERVER STORAGE</span><span>LOCAL DRAFT FILES</span>
       </div>
-      <ReleaseBriefForm initialReleaseType={initialReleaseType} />
+      <ReleaseBriefForm />
       <footer className="apply-footer release-footer">
         <p>Need help preparing metadata?</p>
         <a href="mailto:hello@navasound.com">hello@navasound.com</a>

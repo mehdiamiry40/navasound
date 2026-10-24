@@ -32,6 +32,13 @@ const emptyTrack = (id: string): Track => ({
   isrc: "",
 });
 
+/** A single `?format=` value may preselect the release type. Anything else stays Single. */
+function releaseTypeFromLocation(): ReleaseType {
+  const values = new URLSearchParams(window.location.search).getAll("format");
+  if (values.length !== 1) return "Single";
+  return values[0] === "EP" || values[0] === "Album" ? values[0] : "Single";
+}
+
 const POLICY_RECORD = [
   "Privacy Notice — Version 1.0, effective 23 August 2026",
   "Beta Submission Terms — Version 1.0, effective 23 August 2026",
@@ -148,7 +155,7 @@ async function copyText(text: string) {
   }
 }
 
-export default function ReleaseBriefForm({ initialReleaseType = "Single" }: { initialReleaseType?: ReleaseType }) {
+export default function ReleaseBriefForm() {
   const [tracks, setTracks] = useState<Track[]>([emptyTrack("track-1")]);
   const [removedTracks, setRemovedTracks] = useState<RemovedTrack[]>([]);
   const [isHydrated, setIsHydrated] = useState(false);
@@ -166,6 +173,7 @@ export default function ReleaseBriefForm({ initialReleaseType = "Single" }: { in
   const cancelDraftButton = useRef<HTMLButtonElement>(null);
   const importCompleted = useRef(false);
   const importSequence = useRef(0);
+  const releaseTypeSelect = useRef<HTMLSelectElement>(null);
   const reviewDialog = useRef<HTMLDialogElement>(null);
   const reviewButton = useRef<HTMLButtonElement>(null);
   const closeReviewButton = useRef<HTMLButtonElement>(null);
@@ -174,6 +182,9 @@ export default function ReleaseBriefForm({ initialReleaseType = "Single" }: { in
   const pendingTrackFocus = useRef<{ id: string; direction?: "up" | "down" } | null>(null);
 
   useEffect(() => {
+    // Read the query in the browser so this page can stay one static document.
+    const select = releaseTypeSelect.current;
+    if (select) select.value = releaseTypeFromLocation();
     const hydrationReady = window.setTimeout(() => setIsHydrated(true), 0);
     return () => window.clearTimeout(hydrationReady);
   }, []);
@@ -399,7 +410,7 @@ export default function ReleaseBriefForm({ initialReleaseType = "Single" }: { in
           <label><span>Contact email</span><input name="contactEmail" type="email" autoComplete="email" maxLength={254} required /></label>
           <label>
             <span>Release type</span>
-            <select name="releaseType" defaultValue={initialReleaseType}>
+            <select ref={releaseTypeSelect} name="releaseType" defaultValue="Single">
               <option>Single</option><option>EP</option><option>Album</option>
             </select>
           </label>
